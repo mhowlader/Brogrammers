@@ -1,8 +1,8 @@
-<Team Name (without word "team")>
-<Member Bubbles>
-<Member Buttercup>
-<Member Blossom>
-pd <pd#>
+Brogrammers
+Kevin Feng
+Mohtasim Howlader
+Alan Wang
+pd 2
 ---------------------
 <Project>
 
