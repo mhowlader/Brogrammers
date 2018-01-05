@@ -4,7 +4,7 @@ Mohtasim Howlader
 Alan Wang
 pd 2
 ---------------------
-<Project>
+Matrix Game Simulator
 
 
 
