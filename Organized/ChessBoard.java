@@ -1,13 +1,13 @@
-public class Board {
+public class ChessBoard {
     private static ChessPiece[][] board;
-    public Board() {
+    public ChessBoard() {
 	board = new ChessPiece[8][8];
     }
     public static ChessPiece[][] getBoard() {
 	return board;
     }
-    private void set(int x, int y,ChessPiece piece) {
-	board[x][y] = piece;
+    private void add(ChessPiece piece) {
+	
     }
     public String toString() {
 	String output = "";
