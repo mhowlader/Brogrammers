@@ -7,27 +7,6 @@ pd 2
 Matrix Game Simulator
 
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
@@ -81,10 +60,18 @@ yyyy-mm-dd
 --------------------------------------------------------------
 Mohtasim :: Created chessPiece and subclass shells. Brainstormed classes and variables.
 Alan :: Created Board which had the matrix and set position of pieces but only as strings for now.
-Kevin :: Brainstormed classes and variables.
+Kevin :: Brainstormed classes and variables -- created UML Diagram.
 ==============================================================
 
 
 2018-01-07
 --------------------------------------------------------------
 Mohtasim :: Created ChessBoard out of Alan's Board, incorporated chessPieces into the board, created the chesspieces and their subclasses. Woo.java made.
+Alan Wang :: Created Flowchart
+Kevin :: Revised Flowchart (v2)
+==============================================================
+
+2018-01-05
+--------------------------------------------------------------
+Kevin :: Implemented menu feature, started working on playTurn features, revised FlowChart (v3)
+==============================================================
