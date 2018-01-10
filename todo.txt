@@ -1,0 +1,17 @@
+APCS1 pd02
+Brogrammers
+Alan Wang, Kevin Feng, Mohtasim howlader
+
+Next Steps
+1/10: Finish chessGame, chessBoard, and players (Includes userName(String), playTurn(), setUpBoard(), userMove(String), gameOver(boolean), isCheckMate(), isCheck(), inputMoves() and turnMove(String,String))
+1/11: Finish the inheritance of chessPieces (Includes possibleMoves(), and currentPosition())
+
+1/11 DONE WITH CHESS
+
+1/12: Work on checkersGame, checkersBoard, and players (Includes startGame(), turnMove(String,String),gameOver(), inputMoves(), setUpBoard(), playerWin())
+1/13: Finish inheritance of checkers (Includes possibleMoves(), and currentPosition(),promotion())
+
+1/13: DONE WITH CHECKERS
+
+1/14: Test for bugs 
+1/15: Brush up Chess (Include promotion of Pawn, castling, and stalemate)
