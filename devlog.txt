@@ -76,3 +76,15 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
+
+2018-01-05
+--------------------------------------------------------------
+Mohtasim :: Created chessPiece and subclass shells. Brainstormed classes and variables.
+Alan :: Created Board which had the matrix and set position of pieces but only as strings for now.
+Kevin :: Brainstormed classes and variables.
+==============================================================
+
+
+2018-01-07
+--------------------------------------------------------------
+Mohtasim :: Created ChessBoard out of Alan's Board, incorporated chessPieces into the board, created the chesspieces and their subclasses. Woo.java made.
