@@ -1,12 +1,14 @@
+
+import java.util.ArrayList;
 import java.util.Scanner;
 public class PlayerTurn {
     private static boolean gameOver;
     private static int moveCount;
     private static int[] numbers;
-    private static String[] letters; 
+    private static String[] letters;
     public PlayerTurn() {
 	gameOver = false;
-	moveCount = 0; 
+	moveCount = 0;
     }
     public static int convertLetter(char letter) {
 	int output = 0;
@@ -92,4 +94,3 @@ public class PlayerTurn {
 	System.out.println("Game Over!");
     }
 }
-
