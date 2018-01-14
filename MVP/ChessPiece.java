@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
 public abstract class ChessPiece {
-    public abstract String[] validMoves();
+    public abstract ArrayList fillValidMoves();
+
 }
