@@ -7,11 +7,11 @@ public class Bishop extends ChessPiece {
     }
     public String[] fillValidMoves() {
 		validMoves = new String[70];
-		for (int i = 1; i < 9; i++){
-			validMoves[(row + i)* 10 +(col + i)]; //row is in the tens value, col is in the ones val
-			validMoves[(row + i)* 10 +(col - i)];
-			validMoves[(row - i)* 10 +(col + i)];
-			validMoves[(row - i)* 10 +(col - i)];
+		for (int i = 0; i < 8; i++){
+			validMoves[(i * 4)] = ((row + i + 1)* 10 + (col + i + 1)); //row is in the tens value, col is in the ones val
+			validMoves[(i * 4) + 1] = ((row + i + 1)* 10 + (col - i - 1));
+			validMoves[(i * 4) + 2] = ((row - i - 1) * 10 + (col + i + 1));
+			validMoves[(i * 4) + 3] = ((row - i - 1)* 10 + (col - i - 1));
 		}
     }
     public String toString() {
