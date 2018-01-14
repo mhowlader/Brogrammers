@@ -1,8 +1,11 @@
 public class ChessBoard {
     private final static int BOARD_SIZE = 8; //sets the size of the board
-    private static ChessPiece[][] board; // creates a variable board
+    public static ChessPiece[][] board; // creates a variable board
     public ChessBoard() {
 	board = new ChessPiece[BOARD_SIZE][BOARD_SIZE]; //initializes variable board
+    }
+    public static ChessPiece[][] getBoard() {
+	return board; //returns the board
     }
     private static void setPieceOnBoard(int row, int col, ChessPiece newPiece) { //allows you to place new pieces on the board 
 	board[row][col] = newPiece;
