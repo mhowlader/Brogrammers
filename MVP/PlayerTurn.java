@@ -4,89 +4,97 @@ import java.util.Scanner;
 public class PlayerTurn {
     private static boolean gameOver;
     private static int moveCount;
-    private static int[] numbers;
-    private static String[] letters;
+    private static final String _numbers = "12345678";
+    private static final String _letters = "ABCDEFGH";
+	
     public PlayerTurn() {
 	gameOver = false;
 	moveCount = 0;
+	
     }
-    public static int convertLetter(char letter) {
-	int output = 0;
-	char c;
-	for(c = 'A'; c <= 'H'; c++) { //c++ vs. ++c
-	    if (c == letter) {
+    public static int convertLetter(String letter) {
+		int output = 999;
+		for(int i = 0; i < 8; i++) { 
+			if (letter.equals(_letters.substring(i, i + 1))){
+				output = i;
+			}
+		}
 		return output;
-	    }
-	    else {
-		output += 1;
-	    }
-	}
-	return 0; //change maybe
     }
-    public static void fillNumbers() {
-	numbers = new int[8];
-	for (int ctr = 0; ctr < 8; ctr++) {
-	    numbers[ctr] = ctr+1;
+   
+    public static boolean isInLetters(String str){ //str can only be 1 letter
+		for (int i = 0; i < 8; i++){
+			if (str.equals(_letters.substring(i, i + 1))){
+				return true;
+			}
+		}
+		return false;
 	}
-    }
-    public static void fillLetters() {
-	int ctr = 0;
-	char c;
-	letters = new String[8];
-	for(c = 'A'; c <= 'H'; c++) {
-	    letters[ctr] = c + "";
+	
+	public static boolean isInNumbers(String numStr){ // numStr = num in string form
+		for (int i = 0; i < 8; i++){
+			if (numStr.equals(_numbers.substring(i, i + 1))){
+				return true;
+			}
+		}
+		return false;
 	}
-    }
-    public static boolean intInArray(int x, int[] y) {
-	for(int num : y) {
-	    if (num == x) {
-		return true;
-	    }
-	}
-	return false;
-    }
-    public static boolean stringInArray(String x, String[] y) {
-	for(String letter : y) {
-	    if (letter.equals(x)) {
-		return true;
-	    }
-	}
-	return false;
-    }
+	
     public static void play() {
-	Scanner in = new Scanner(System.in);
-	String line,LetterOne;
-	int oldX,oldY,newX,newY;
-	System.out.println("Choose the piece you want to move"); //E2
-	line = in.nextLine();
-	if (!intInArray(Integer.parseInt(line.substring(1,2)),numbers)) {
-	    System.out.println("Numbers must be between 1 and 8");
-	    line = in.nextLine();
+		Scanner in = new Scanner(System.in);
+		String userInput,LetterOne;
+		boolean didPlayerEnterValidPair;
+		int oldX,oldY,newX,newY;
+		
+		System.out.println("Choose the piece you want to move (E2)"); //E2
+		userInput = in.nextLine();
+		didPlayerEnterValidPair = false;
+		
+		while (!didPlayerEnterValidPair){
+			if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
+				System.out.println("Numbers must be between 1 and 8");
+				userInput = in.nextLine();
+			} else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
+				System.out.println("Letters must be between A and H");
+				userInput = in.nextLine();
+			} else {
+				didPlayerEnterValidPair = true;
+			}
+		}
+		
+		oldX = convertLetter(userInput.substring(0,1));
+		oldY = Integer.parseInt(userInput.substring(1,2)) - 1;
+		
+		System.out.println("Choose the location you want to move the piece to");
+		userInput = in.nextLine();
+		didPlayerEnterValidPair = false;
+		
+		while (!didPlayerEnterValidPair){
+			if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
+				System.out.println("Numbers must be between 1 and 8");
+				userInput = in.nextLine();
+			} else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
+				System.out.println("Letters must be between A and H");
+				userInput = in.nextLine();
+			} else {
+				didPlayerEnterValidPair = true;
+			}
+		}
+		
+		newX = convertLetter(userInput.substring(0,1));
+		newY = Integer.parseInt(userInput.substring(1,2)) - 1;
+
+		ChessBoard.movePiece(oldY,oldX,newY,newX);
+		
+		if (ChessBoard.checkMate()) {
+			gameOver = false;
+		}
 	}
-	if (!stringInArray(line.substring(1,2),letters)) {
-	    System.out.println("Letters must be between A and E");
-	    line = in.nextLine();
-	}
-	LetterOne = line.substring(0,1);
-	char letterOnePosition = LetterOne.charAt(0);
-	oldX = convertLetter(letterOnePosition);
-	oldY = (-1 * Integer.parseInt(line.substring(1,2))) + 8;
-	System.out.println("Choose the location you want to move the piece to"); //E3}
-	line = in.nextLine();
-	LetterOne = line.substring(0,1);
-	char letterOneDestination = LetterOne.charAt(0);
-	newX = convertLetter(letterOneDestination);
-	newY = (-1 * Integer.parseInt(line.substring(1,2))) + 8;
-	ChessBoard.movePiece(oldY,oldX,newY,newX);
-	if (ChessBoard.checkMate()) {
-	    gameOver = false;
-	}
-    }
+    
     public static void main(String[] args) {
 	ChessBoard m1 = new ChessBoard();
 	m1.setUp();
-	fillNumbers();
-	fillLetters();
+
 	while (!gameOver) {
 	    System.out.println(m1);
 	    play();
