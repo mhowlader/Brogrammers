@@ -11,7 +11,7 @@ public class Rook extends ChessPiece {
 		validMoves = new ArrayList<int[]>();
 
         //generates coordinates at the right
-        for (int c=col+1;col<8;c++) {
+        for (int c=col+1;c<8;c++) {
             if (!ChessBoard.isPieceOnSquare(row,c)) {
                 validMoves.add(new int[]{row,c});
             }
@@ -25,7 +25,7 @@ public class Rook extends ChessPiece {
         }
 
         //coordinates at the left
-        for (int c=col-1;col>=0;c--) {
+        for (int c=col-1;c>=0;c--) {
             if (!ChessBoard.isPieceOnSquare(row,c)) {
                 validMoves.add(new int[]{row,c});
             }

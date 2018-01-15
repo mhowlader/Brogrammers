@@ -14,7 +14,7 @@ public class Bishop extends ChessPiece {
         //
 
         //generates coordinates of top right diagonal of Bishop
-        for (int r=row-1;r<=0;r--) {
+        for (int r=row-1;r>=0;r--) {
             for (int c=col+1;c<8;c++) {
                 if (!ChessBoard.isPieceOnSquare(r,c)) { //if empty square
                     validMoves.add(new int[]{r,c});
@@ -30,8 +30,8 @@ public class Bishop extends ChessPiece {
             }
         }
 
-        for (int r=row-1;r<=0;r--) {
-            for (int c=col-1;c<=0;c--) {
+        for (int r=row-1;r>=0;r--) {
+            for (int c=col-1;c>=0;c--) {
 
                 if (!ChessBoard.isPieceOnSquare(r,c)) {
                     validMoves.add(new int[]{r,c});
