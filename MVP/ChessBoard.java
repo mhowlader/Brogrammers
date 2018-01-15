@@ -79,6 +79,23 @@ public class ChessBoard {
         return board[r][c].getColor();
     }
 
+    public boolean inArray(int[] x, ArrayList<int[]> y) {
+      for(int[] array: y) {
+        if ((array[0] == x[0]) & (array[1] == x[0])) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+    }
+    public static boolean validMove(String move,ChessPiece piece) {
+        coor0 = move.substring(0,1);
+        coor1 = move.substring(1,2);
+        int[] temp = {coor0,coor1}
+        return inArray(temp,piece.fillValidMoves());
+      }
+
     public String toString() {
         String output = "";
         String letters="ABCDEFGH";
