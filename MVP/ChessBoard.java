@@ -53,7 +53,7 @@ public class ChessBoard {
         }
     }
     public static boolean isPieceOnSquare(int x, int y) {
-        if (board[x][y] instanceof ChessPiece) {
+        if (board[x][y] != null) {
             return true;
         }
         return false;
@@ -65,6 +65,14 @@ public class ChessBoard {
             return true;
         }
         return false;
+    }
+
+    public static ChessPiece getPiece(int r, int c) {
+        return board[r][c];
+    }
+
+    public static String colorOfSquare(int r, int c) {
+        return board[r][c].getColor();
     }
 
     public String toString() {

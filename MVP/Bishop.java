@@ -16,10 +16,17 @@ public class Bishop extends ChessPiece {
         //generates coordinates of top right diagonal of Bishop
         for (int r=row-1;r<=0;r--) {
             for (int c=col+1;c<8;c++) {
-
-                if (!ChessBoard.isPieceOnSquare(r,c)) {
+                if (!ChessBoard.isPieceOnSquare(r,c)) { //if empty square
                     validMoves.add(new int[]{r,c});
                 }
+                else if (!sameColor(ChessBoard.getPiece(r,c))) {
+                    validMoves.add(new int[]{r,c});
+                    break;
+                }
+                else {
+                    break;
+                }
+
             }
         }
 
@@ -28,6 +35,13 @@ public class Bishop extends ChessPiece {
 
                 if (!ChessBoard.isPieceOnSquare(r,c)) {
                     validMoves.add(new int[]{r,c});
+                }
+                else if (!sameColor(ChessBoard.getPiece(r,c))) {
+                    validMoves.add(new int[]{r,c});
+                    break;
+                }
+                else {
+                    break;
                 }
             }
         }
@@ -38,6 +52,13 @@ public class Bishop extends ChessPiece {
                 if (!ChessBoard.isPieceOnSquare(r,c)) {
                     validMoves.add(new int[]{r,c});
                 }
+                else if (!sameColor(ChessBoard.getPiece(r,c))) {
+                    validMoves.add(new int[]{r,c});
+                    break;
+                }
+                else {
+                    break;
+                }
             }
         }
 
@@ -46,6 +67,13 @@ public class Bishop extends ChessPiece {
 
                 if (!ChessBoard.isPieceOnSquare(r,c)) {
                     validMoves.add(new int[]{r,c});
+                }
+                else if (!sameColor(ChessBoard.getPiece(r,c))) {
+                    validMoves.add(new int[]{r,c});
+                    break;
+                }
+                else {
+                    break;
                 }
             }
         }

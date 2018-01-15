@@ -14,6 +14,13 @@ public abstract class ChessPiece {
             color="Black";
         }
     }
+    public String getColor() {
+        return color;
+    }
+
+    public boolean sameColor(ChessPiece a) {
+        return this.getColor().equals(a.getColor()); //check if same color
+    }
     public abstract ArrayList<int[]> fillValidMoves();
 
 }
