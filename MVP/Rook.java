@@ -15,12 +15,26 @@ public class Rook extends ChessPiece {
             if (!ChessBoard.isPieceOnSquare(row,c)) {
                 validMoves.add(new int[]{row,c});
             }
+            else if (!sameColor(ChessBoard.getPiece(row,c))) {
+                validMoves.add(new int[]{row,c});
+                break;
+            }
+            else {
+                break;
+            }
         }
 
         //coordinates at the left
         for (int c=col-1;col>=0;c--) {
             if (!ChessBoard.isPieceOnSquare(row,c)) {
                 validMoves.add(new int[]{row,c});
+            }
+            else if (!sameColor(ChessBoard.getPiece(row,c))) {
+                validMoves.add(new int[]{row,c});
+                break;
+            }
+            else {
+                break;
             }
         }
 
@@ -29,12 +43,26 @@ public class Rook extends ChessPiece {
             if (!ChessBoard.isPieceOnSquare(r,col)) {
                 validMoves.add(new int[]{r,col});
             }
+            else if (!sameColor(ChessBoard.getPiece(r,col))) {
+                validMoves.add(new int[]{r,col});
+                break;
+            }
+            else {
+                break;
+            }
         }
 
         //generates coordinates upwards
         for (int r=row-1;r>=0;r--) {
             if (!ChessBoard.isPieceOnSquare(r,col)) {
                 validMoves.add(new int[]{r,col});
+            }
+            else if (!sameColor(ChessBoard.getPiece(r,col))) {
+                validMoves.add(new int[]{r,col});
+                break;
+            }
+            else {
+                break;
             }
         }
 
