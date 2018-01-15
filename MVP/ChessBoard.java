@@ -77,7 +77,7 @@ public class ChessBoard {
         }
         output+="\n";
         for( int i =0; i < 8; i++ ) {
-            output += (8-i) + "| ";
+            output += (i+1) + "| ";
             for( int j=0; j < 8; j++ ) {
                 if (board[i][j] == null) {
                     output +="  ";
