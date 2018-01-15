@@ -10,7 +10,7 @@ public class ChessBoard {
     public static ChessPiece[][] getBoard() {
         return board; //returns the board
     }
-    private static void setPieceOnBoard(int row, int col, ChessPiece newPiece) { //allows you to place new pieces on the board
+    public static void setPieceOnBoard(int row, int col, ChessPiece newPiece) { //allows you to place new pieces on the board
         board[row][col] = newPiece;
     }
     public static void movePiece( int oldRow, int oldCol, int newRow, int newCol) { //allows you to move a piece
@@ -22,7 +22,7 @@ public class ChessBoard {
             setPieceOnBoard(1,c,new Pawn(1,c,1)); //white pawns
         }
         for (int c=0;c<8;c++) {
-            setPieceOnBoard(6,c,new Pawn(1,c,2)); //black pawns
+            setPieceOnBoard(6,c,new Pawn(7,c,2)); //black pawns
         }
 
         //White pieces
