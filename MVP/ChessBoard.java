@@ -13,9 +13,17 @@ public class ChessBoard {
     public static void setPieceOnBoard(int row, int col, ChessPiece newPiece) { //allows you to place new pieces on the board
         board[row][col] = newPiece;
     }
+
+    public static boolean checkIfLegal( int oldRow, int oldCol, int newRow, int newCol) {
+        ChessPiece piece=board[oldRow][oldCol];
+        int[] coord= new int[]{newRow,newCol};
+        return piece.validMoves.contains(coord);
+    }
     public static void movePiece( int oldRow, int oldCol, int newRow, int newCol) { //allows you to move a piece
+
         board[newRow][newCol] = board[oldRow][oldCol]; // sets whatevers on the new position as what was at the old position
-        board[oldRow][oldCol] = null;  //null converted to "" in toString()
+        board[oldRow][oldCol] = null; //null converted to "" in toString()
+
     }
     public void setUp() {
         for (int c=0;c<8;c++) {
@@ -77,6 +85,7 @@ public class ChessBoard {
     public static String colorOfSquare(int r, int c) {
         return board[r][c].getColor();
     }
+
 
     public String toString() {
         String output = "";

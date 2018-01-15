@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Bishop extends ChessPiece {
     //private static int row,col;
-    public static ArrayList<int[]> validMoves;
     public Bishop(int x,int y, int player ) { //use coor index at 0
         super(x,y,player);
         fillValidMoves();
@@ -29,6 +28,7 @@ public class Bishop extends ChessPiece {
 
             }
         }
+
 
         for (int r=row-1;r>=0;r--) {
             for (int c=col-1;c>=0;c--) {

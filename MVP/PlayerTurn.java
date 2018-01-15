@@ -47,6 +47,8 @@ public class PlayerTurn {
 		isr = new InputStreamReader(System.in);
 		in = new BufferedReader(isr);
 
+        int currentPlayerNum=1;
+
 		String userInput,LetterOne;
 		boolean didPlayerEnterValidPair;
 		int oldX,oldY,newX,newY;
@@ -82,47 +84,71 @@ public class PlayerTurn {
 					}
 				}
 
+                //OLDX and OLDY are coordinates on the board
+
 				oldX = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
 				oldY = Integer.parseInt(userInput.substring(1,2)) - 1;
-				//==========================================================================
 
-				System.out.println("Choose the location you want to move the piece to"); //request user input
-				//====================user selects destination========================
+                if (ChessBoard.isPieceOnSquare(oldX,oldY)) { //check f there is a piece on the square
+                    if ( ChessBoard.getPiece(oldX,oldY).getPlayerNum() == currentPlayerNum ) { //check if matching playernumber
+                        System.out.println("Choose the location you want to move the piece to"); //request user input
+        				//====================user selects destination========================
 
-				userInput = in.readLine();
-				didPlayerEnterValidPair = false;
+        				userInput = in.readLine();
+        				didPlayerEnterValidPair = false;
 
-				while (!didPlayerEnterValidPair){
-					if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
-						System.out.println("Numbers must be between 1 and 8");
-						try {
-						userInput = in.readLine();
-						} catch (IOException e){
-							System.out.println(errorMessage);
-						} catch (StringIndexOutOfBoundsException siobe){
-							System.out.println(errorMessage);
-						}
-					} else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
-						System.out.println("Letters must be between A and H");
-						try {
-						userInput = in.readLine();
-						} catch (IOException e){
-							System.out.println(errorMessage);
-						} catch (StringIndexOutOfBoundsException siobe){
-							System.out.println(errorMessage);
-						}
-					} else {
-						didPlayerEnterValidPair = true;
-					}
-				}
+        				while (!didPlayerEnterValidPair){
+        					if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
+        						System.out.println("Numbers must be between 1 and 8");
+        						try {
+        						userInput = in.readLine();
+        						} catch (IOException e){
+        							System.out.println(errorMessage);
+        						} catch (StringIndexOutOfBoundsException siobe){
+        							System.out.println(errorMessage);
+        						}
+        					} else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
+        						System.out.println("Letters must be between A and H");
+        						try {
+        						userInput = in.readLine();
+        						} catch (IOException e){
+        							System.out.println(errorMessage);
+        						} catch (StringIndexOutOfBoundsException siobe){
+        							System.out.println(errorMessage);
+        						}
+        					} else {
+        						didPlayerEnterValidPair = true;
+        					}
+        				}
 
-				newX = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
-				newY = Integer.parseInt(userInput.substring(1,2)) - 1;
+        				newX = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
+        				newY = Integer.parseInt(userInput.substring(1,2)) - 1;
 
-				ChessBoard.movePiece(oldY,oldX,newY,newX);
-			}else {
-				System.out.println(errorMessage);
-			}
+                        if (ChessBoard.checkIfLegal(oldX, oldY, newX,newY)) {
+                            ChessBoard.movePiece(oldY,oldX,newY,newX);
+                            if (currentPlayerNum==1) {
+                                currentPlayerNum=2;
+                            }
+                            else {
+                                currentPlayerNum=1;
+                            }
+                        }
+                        else {
+                            System.out.println("Illegal Move. You can't do that. Pick up a rule book. Try again.");
+                        }
+                    }
+                    else {
+                        System.out.println("That's not your piece. Try again");
+                    }
+                }
+                else {
+                    System.out.println("There's no Piece on that Square. Try again");
+                }
+
+
+            }else {
+                System.out.println(errorMessage);
+            }
 		} catch (IOException e){
 			System.out.println(errorMessage);
 		} catch (StringIndexOutOfBoundsException siobe){
@@ -137,6 +163,8 @@ public class PlayerTurn {
 			gameOver = false;
 		}
 	}
+
+
 
 
 

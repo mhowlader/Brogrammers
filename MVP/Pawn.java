@@ -3,7 +3,7 @@ import java.util.*;
 import java.util.ArrayList;
 public class Pawn extends ChessPiece {
     //private static int row,col;
-    public static ArrayList<int[]> validMoves;
+    
 	private static InputStreamReader isr;
 	private static BufferedReader in;
 

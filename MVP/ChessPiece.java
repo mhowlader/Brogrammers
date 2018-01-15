@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public abstract class ChessPiece {
+    public ArrayList<int[]> validMoves;
     public int row, col, playerNum;
     public String color;
     public ChessPiece(int x,int y, int player) {
@@ -16,6 +17,10 @@ public abstract class ChessPiece {
     }
     public String getColor() {
         return color;
+    }
+
+    public int getPlayerNum() {
+        return playerNum;
     }
 
     public boolean sameColor(ChessPiece a) {

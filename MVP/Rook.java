@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Rook extends ChessPiece {
     //private static int row,col;
-    public static ArrayList<int[]> validMoves;
     public Rook(int x,int y, int player) { //use coor index at 0
         super(x,y,player);
         fillValidMoves();
