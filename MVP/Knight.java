@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 
 public class Knight extends ChessPiece {
-    private static int row,col;
+    //private static int row,col;
     public static ArrayList<int[]> validMoves;
-    public Knight(int x,int y) { //use coor index at 0
-        col = x;
-        row = y;
-
+    public Knight(int x,int y, int player) { //use coor index at 0
+        super(x,y,player);
+        fillValidMoves();
     }
-    public ArrayList fillValidMoves() {
+    public ArrayList<int[]> fillValidMoves() {
         validMoves=new ArrayList<int[]>();
 
         //2d array of all moves
@@ -25,6 +24,10 @@ public class Knight extends ChessPiece {
 
         //adds those 2d arrays to validMoves
         for (int[] b:tempCol) {
+            // if (ChessBoard.squareExists(a[0],a[1])) {
+            //   if ()
+            // }
+
             validMoves.add(b);
         }
 
