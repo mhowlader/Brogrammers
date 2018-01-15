@@ -52,7 +52,7 @@ public class PlayerTurn {
 
 		String userInput,LetterOne;
 		boolean didPlayerEnterValidPair;
-		int oldX,oldY,newX,newY;
+		int oldR,oldC,newR,newC;
 		//====================user selects piece========================
 		System.out.println("Choose the piece you want to move (E2)"); //E2
 
@@ -87,16 +87,16 @@ public class PlayerTurn {
 
                 //OLDX and OLDY are coordinates on the board
 
-				oldY = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
-				oldX = Integer.parseInt(userInput.substring(1,2)) - 1;
-
-                System.out.println(oldX);
-                System.out.println(oldY);
+				oldC = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
+				oldR = Integer.parseInt(userInput.substring(1,2)) - 1;
 
 
-                if (cBoard.isPieceOnSquare(oldX,oldY)) { //check f there is a piece on the square
 
-                    if ( cBoard.getPiece(oldX,oldY).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
+
+                if (cBoard.isPieceOnSquare(oldR,oldC)) { //check f there is a piece on the square
+
+                    if ( cBoard.getPiece(oldR,oldC).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
+
                         System.out.println("Choose the location you want to move the piece to"); //request user input
         				//====================user selects destination========================
 
@@ -127,11 +127,11 @@ public class PlayerTurn {
         					}
         				}
 
-        				newY = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
-        				newX = Integer.parseInt(userInput.substring(1,2)) - 1;
+        				newC = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
+        				newR = Integer.parseInt(userInput.substring(1,2)) - 1;
 
-                        if (cBoard.checkIfLegal(oldX, oldY, newX,newY)) {
-                            cBoard.movePiece(oldY,oldX,newY,newX);
+                        if (cBoard.checkIfLegal(oldR,oldC,newR,newC)) {
+                            cBoard.movePiece(oldR,oldC,newR,newC);
                             if (currentPlayerNum==1) {
                                 currentPlayerNum=2;
                             }
