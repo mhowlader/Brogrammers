@@ -9,6 +9,7 @@ public class PlayerTurn {
     private static final String _letters = "ABCDEFGH";
 	private static InputStreamReader isr;
 	private static BufferedReader in;
+    private static ChessBoard cBoard;
 
     public PlayerTurn() {
 	gameOver = false;
@@ -89,8 +90,9 @@ public class PlayerTurn {
 				oldX = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
 				oldY = Integer.parseInt(userInput.substring(1,2)) - 1;
 
-                if (ChessBoard.isPieceOnSquare(oldX,oldY)) { //check f there is a piece on the square
-                    if ( ChessBoard.getPiece(oldX,oldY).getPlayerNum() == currentPlayerNum ) { //check if matching playernumber
+                if (cBoard.isPieceOnSquare(oldX,oldY)) { //check f there is a piece on the square
+    
+                    if ( cBoard.getPiece(oldX,oldY).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
                         System.out.println("Choose the location you want to move the piece to"); //request user input
         				//====================user selects destination========================
 
@@ -124,8 +126,8 @@ public class PlayerTurn {
         				newX = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
         				newY = Integer.parseInt(userInput.substring(1,2)) - 1;
 
-                        if (ChessBoard.checkIfLegal(oldX, oldY, newX,newY)) {
-                            ChessBoard.movePiece(oldY,oldX,newY,newX);
+                        if (cBoard.checkIfLegal(oldX, oldY, newX,newY)) {
+                            cBoard.movePiece(oldY,oldX,newY,newX);
                             if (currentPlayerNum==1) {
                                 currentPlayerNum=2;
                             }
@@ -159,7 +161,7 @@ public class PlayerTurn {
 
 		moveCount += 1; //+1 move
 
-		if (ChessBoard.checkMate()) { //if in checkmate, end game
+		if (cBoard.checkMate()) { //if in checkmate, end game
 			gameOver = false;
 		}
 	}
@@ -169,11 +171,11 @@ public class PlayerTurn {
 
 
     public static void main(String[] args) {
-	ChessBoard m1 = new ChessBoard();
-	m1.setUp();
+	cBoard = new ChessBoard();
+	cBoard.setUp();
 
 	while (!gameOver) {
-	    System.out.println(m1);
+	    System.out.println(cBoard);
 	    play();
 	}
 	System.out.println("Game Over!");

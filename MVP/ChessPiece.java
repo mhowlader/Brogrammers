@@ -13,6 +13,7 @@ public abstract class ChessPiece {
         }
         else {
             color="Black";
+
         }
     }
     public String getColor() {
