@@ -10,6 +10,7 @@ public class Pawn extends ChessPiece {
     public ArrayList<int[]> fillValidMoves() {
 		validMoves = new ArrayList<int[]>();
 
+        //generates all valid moves for any given pawn
         if (color.equals("White") ) {
             if (!ChessBoard.isPieceOnSquare(row+1,col)) {
                 validMoves.add(new int[]{row+1,col});

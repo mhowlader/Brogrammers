@@ -24,6 +24,8 @@ public class ChessBoard {
         for (int c=0;c<8;c++) {
             setPieceOnBoard(6,c,new Pawn(1,c,2)); //black pawns
         }
+
+        //White pieces
         setPieceOnBoard(0,0,new Rook(0,0,1));
         setPieceOnBoard(0,1,new Knight(0,1,1));
         setPieceOnBoard(0,2,new Bishop(0,2,1));
@@ -32,6 +34,8 @@ public class ChessBoard {
         setPieceOnBoard(0,5,new Bishop(0,5,1));
         setPieceOnBoard(0,6,new Knight(0,6,1));
         setPieceOnBoard(0,7,new Rook(0,7,1));
+
+        //black pieces
         setPieceOnBoard(7,0,new Rook(7,0,2));
         setPieceOnBoard(7,1,new Knight(7,1,2));
         setPieceOnBoard(7,2,new Bishop(7,2,2));
