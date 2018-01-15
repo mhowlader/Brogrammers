@@ -13,14 +13,14 @@ public class Knight extends ChessPiece {
 
         //2d array of all moves
         int[][] tempCol= new int[][]{
-            {row-2,row-1},
-            {row-2,row+1},
-            {row-1,row+2},
-            {row-1,row-2},
-            {row+1,row+2},
-            {row+1,row-2},
-            {row+2,row+1},
-            {row+2,row-1}
+            {row-2,col-1},
+            {row-2,col+1},
+            {row-1,col+2},
+            {row-1,col-2},
+            {row+1,col+2},
+            {row+1,col-2},
+            {row+2,col+1},
+            {row+2,col-1}
         };
 
         //adds those 2d arrays to validMoves
