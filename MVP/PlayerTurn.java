@@ -87,11 +87,15 @@ public class PlayerTurn {
 
                 //OLDX and OLDY are coordinates on the board
 
-				oldX = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
-				oldY = Integer.parseInt(userInput.substring(1,2)) - 1;
+				oldY = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
+				oldX = Integer.parseInt(userInput.substring(1,2)) - 1;
+
+                System.out.println(oldX);
+                System.out.println(oldY);
+
 
                 if (cBoard.isPieceOnSquare(oldX,oldY)) { //check f there is a piece on the square
-    
+
                     if ( cBoard.getPiece(oldX,oldY).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
                         System.out.println("Choose the location you want to move the piece to"); //request user input
         				//====================user selects destination========================
@@ -123,8 +127,8 @@ public class PlayerTurn {
         					}
         				}
 
-        				newX = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
-        				newY = Integer.parseInt(userInput.substring(1,2)) - 1;
+        				newY = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
+        				newX = Integer.parseInt(userInput.substring(1,2)) - 1;
 
                         if (cBoard.checkIfLegal(oldX, oldY, newX,newY)) {
                             cBoard.movePiece(oldY,oldX,newY,newX);
