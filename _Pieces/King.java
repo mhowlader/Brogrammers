@@ -5,29 +5,21 @@ public class King extends ChessPiece {
 	row = x;
 	col = y;
     }
-    public static char convertInt(int x) {
-	char c;
-	int ctr;
-	for(c = 'A'; c <= 'H'; c++) {
-	    ctr = 0; //maybe error 
-	    if (ctr == x) {
-		return c;
-	    }
-	    ctr += 1;
+
+    public void fillValidMoves() {
+		validMoves = new String[8];
+			validMoves[0] = row  //row is in the tens value, col is in the ones val
+			validMoves[1] = 
+			validMoves[2] = 
+			validMoves[3] = 
+			validMoves[4] = 
+			validMoves[5] = 
+			validMoves[6] = 
+			validMoves[7] = 
+		}
+
+	public String[] getValidMoves(){
+		return validMoves;
 	}
-	return 'z'; //maybe error
-    }
-    public static edgeDetect() {
-	
-    }
-    public String[] validMoves() {
-	validMoves = new String[1000];
-
-
-
-
-
-
-
-    //create converter from E3 to index starting from 0
+}
 
