@@ -24,6 +24,12 @@ public abstract class ChessPiece {
         return playerNum;
     }
 
+    public ArrayList<int[]> getValidMoves() {
+        return validMoves;
+      }
+
+
+
     public boolean sameColor(ChessPiece a) {
         return this.getColor().equals(a.getColor()); //check if same color
     }

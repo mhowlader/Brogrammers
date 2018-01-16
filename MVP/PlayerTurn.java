@@ -10,6 +10,7 @@ public class PlayerTurn {
 	private static InputStreamReader isr;
 	private static BufferedReader in;
     private static ChessBoard cBoard;
+    private static int currentPlayerNum=1;
 
     public PlayerTurn() {
 	gameOver = false;
@@ -48,7 +49,7 @@ public class PlayerTurn {
 		isr = new InputStreamReader(System.in);
 		in = new BufferedReader(isr);
 
-        int currentPlayerNum=1;
+
 
 		String userInput,LetterOne;
 		boolean didPlayerEnterValidPair;
@@ -96,7 +97,12 @@ public class PlayerTurn {
                 if (cBoard.isPieceOnSquare(oldR,oldC)) { //check f there is a piece on the square
 
                     if ( cBoard.getPiece(oldR,oldC).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
-
+                        for (int[] a: cBoard.getPiece(oldR,oldC).validMoves) {
+                            System.out.println(Arrays.toString(a));
+                        }
+                        System.out.println(cBoard.getPiece(oldR,oldC).getColor());
+                        System.out.println(oldR);
+                        System.out.println(oldC);
                         System.out.println("Choose the location you want to move the piece to"); //request user input
         				//====================user selects destination========================
 
@@ -132,8 +138,10 @@ public class PlayerTurn {
 
                         if (cBoard.checkIfLegal(oldR,oldC,newR,newC)) {
                             cBoard.movePiece(oldR,oldC,newR,newC);
+                            System.out.println(currentPlayerNum);
                             if (currentPlayerNum==1) {
                                 currentPlayerNum=2;
+                                System.out.println(currentPlayerNum);
                             }
                             else {
                                 currentPlayerNum=1;
@@ -144,7 +152,7 @@ public class PlayerTurn {
                         }
                     }
                     else {
-                        System.out.println("That's not your piece. Try again");
+                        System.out.println("That's not your piece. Try again" + currentPlayerNum);
                     }
                 }
                 else {

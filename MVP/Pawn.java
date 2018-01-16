@@ -3,9 +3,9 @@ import java.util.*;
 import java.util.ArrayList;
 public class Pawn extends ChessPiece {
     //private static int row,col;
-    
-    private static InputStreamReader isr;
-    private static BufferedReader in;
+
+	private static InputStreamReader isr;
+	private static BufferedReader in;
 
 
     public Pawn(int x,int y, int player) { //use coor index at 0
@@ -33,7 +33,7 @@ public class Pawn extends ChessPiece {
             }
         }
 
-        if (color.equals("Black") ) {
+        else if (color.equals("Black") ) {
             if (!ChessBoard.isPieceOnSquare(row-1,col)) {
                 validMoves.add(new int[]{row-1,col});
                 if (row==6 && !ChessBoard.isPieceOnSquare(row-2,col)) {

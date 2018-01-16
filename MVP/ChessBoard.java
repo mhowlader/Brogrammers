@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ChessBoard {
@@ -17,7 +18,12 @@ public class ChessBoard {
     public static boolean checkIfLegal( int oldRow, int oldCol, int newRow, int newCol) {
         ChessPiece piece=board[oldRow][oldCol];
         int[] coord= new int[]{newRow,newCol};
-        return piece.getValidMoves.contains(coord);
+        for (int[] a:piece.getValidMoves()) {
+            if (Arrays.equals(a,coord)) {
+                return true;
+            }
+        }
+        return false;
     }
     public static void movePiece( int oldRow, int oldCol, int newRow, int newCol) { //allows you to move a piece
 
