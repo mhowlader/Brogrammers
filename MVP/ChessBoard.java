@@ -36,7 +36,7 @@ public class ChessBoard {
             setPieceOnBoard(1,c,new Pawn(1,c,1)); //white pawns
         }
         for (int c=0;c<8;c++) {
-            setPieceOnBoard(6,c,new Pawn(1,c,2)); //black pawns
+            setPieceOnBoard(6,c,new Pawn(6,c,2)); //black pawns
         }
 
         //White pieces
@@ -57,8 +57,6 @@ public class ChessBoard {
         setPieceOnBoard(7,5,new Bishop(7,5,2));
         setPieceOnBoard(7,6,new Knight(7,6,2));
         setPieceOnBoard(7,7,new Rook(7,7,2));
-
-        refreshValidMoves();
     }
     public static boolean isPieceOnSquare(int x, int y) {
         if (board[x][y] instanceof ChessPiece) {
@@ -82,160 +80,81 @@ public class ChessBoard {
     public static String colorOfSquare(int r, int c) {
         return board[r][c].getColor();
     }
-
-    public static boolean check(int row, int col) {
-        ChessPiece piece = board[row][col];
-        String color = piece.getColor();
-        int[] coord = new int[]{row,col};
-        if (color.equals("black")) {
-            for(int[] a: getWhiteValidMoves()) {
-                if (Arrays.equals(coord,a)) {
-                    return true;
-                }
-            }
-        }
-        else if (color.equals("white")) {
-            for(int[] a: getBlackValidMoves()) {
-                if (Arrays.equals(coord,a)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
-    public static boolean checkMate(int row, int col) {
-        ChessPiece piece = board[row][col];
-        String color = piece.getColor();
-        int[] coord = new int[]{row,col};
-        if (color.equals("black") & check(row,col)) {
-            for(int[] a: getWhiteValidMoves()) {
-                for(int[] b: piece.getValidMoves()) {
-                    if (!Arrays.equals(b,a)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        else if (color.equals("white")) {
-            for(int[] a: getBlackValidMoves()) {
-                for(int[] b: piece.getValidMoves()) {
-                    if (!Arrays.equals(b,a)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
     public static void blackValidMoves() {
         ChessPiece piece;
-        blackValidMoves = new ArrayList<int[]>();
-        for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                piece = board[x][y];
-                if (piece.getColor() == "black") {
-                    for(int[] coord: piece.getValidMoves()) {
-                        blackValidMoves.add(coord);
-                    }
-                }
-            }
-        }
+	blackValidMoves = new ArrayList<int[]>();
+	for (int x = 0; x < 8; x++) {
+	    for (int y = 0; y < 8; y++) {
+		piece = board[x][y];
+		if (piece.getColor() == "black") {
+		    for(int[] coord: piece.getValidMoves()) {
+			blackValidMoves.add(coord);
+		    }
+		}
+	    }
+	}
     }
-
+	
     public static ArrayList<int[]> getBlackValidMoves() {
-        return blackValidMoves;
+	return blackValidMoves;
     }
     public static void whiteValidMoves() {
         ChessPiece piece;
-        whiteValidMoves = new ArrayList<int[]>();
-        for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                piece = board[x][y];
-                if (piece.getColor() == "white") {
-                    for(int[] coord: piece.getValidMoves()) {
-                        whiteValidMoves.add(coord);
-                    }
-                }
-            }
-        }
-    }
-
-    //refreshes valid moves
-    public static void refreshValidMoves() {
-        for (int i=0;i<8;i++) {
-            for (int j=0;j<8;j++) {
-                if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
-                    getPiece(i,j).fillValidMoves();
-                }
-            }
-        }
-
+	whiteValidMoves = new ArrayList<int[]>();
+	for (int x = 0; x < 8; x++) {
+	    for (int y = 0; y < 8; y++) {
+		piece = board[x][y];
+		if (piece.getColor() == "white") {
+		    for(int[] coord: piece.getValidMoves()) {
+			whiteValidMoves.add(coord);
+		    }
+		}
+	    }
+	}
     }
 
     public static ArrayList<int[]> getWhiteValidMoves() {
-        return whiteValidMoves;
+	return whiteValidMoves;
     }
-
+    
     public String toString() {
-        String output = "";
-        String letters="abcdefgh";
-        output+="\n   ";
+	String output = "";
+	String letters="abcdefgh";
+	output+="\n   ";
 
-        for (int i=0;i<8;i++) {
-            output+= "- ";
-        }
-        output+="\n";
-        for( int i =0; i < 8; i++ ) {
-            output += (i+1) + "| ";
-            for( int j=0; j < 8; j++ ) {
-                if (board[i][j] == null) {
-                    output +="  ";
-                }
-                else {
-                    output += board[i][j] + " "; //get(i+1,j+1)
-                }
-            }
-            output += "|\n";
-        }
-        output+="   ";
-        for (int i=0;i<8;i++) {
-            output+= "- ";
-        }
-        output+="\n   ";
+	for (int i=0;i<8;i++) {
+	    output+= "- ";
+	}
+	output+="\n";
+	for( int i =0; i < 8; i++ ) {
+	    output += (i+1) + "| ";
+	    for( int j=0; j < 8; j++ ) {
+		if (board[i][j] == null) {
+		    output +="  ";
+		}
+		else {
+		    output += board[i][j] + " "; //get(i+1,j+1)
+		}
+	    }
+	    output += "|\n";
+	}
+	output+="   ";
+	for (int i=0;i<8;i++) {
+	    output+= "- ";
+	}
+	output+="\n   ";
 
-        for (int i=0;i<8;i++) {
-            output+= letters.substring (i,i+1) + " ";
-        }
-        return output;
+	for (int i=0;i<8;i++) {
+	    output+= letters.substring (i,i+1) + " ";
+	}
+	return output;
     }
 
-    //testing ChessBoard sets up properly
-    // public static void main (String[] args) {
-    //     ChessBoard c=new ChessBoard();
-    //     c.setUp();
-    //
-    //     // for (int i=0;i<8;i++) {
-    //     //     for (int j=0;j<8;j++) {
-    //     //         if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
-    //     //             System.out.println(getPiece(i,j) + " " + getPiece(i,j).getColor() );
-    //     //             for (int[] a : getPiece(i,j).getValidMoves()) {
-    //     //                 System.out.println(Arrays.toString(a));
-    //     //             }
-    //     //         }
-    //     //     }
-    //     // }
-    //
-    //     movePiece(1,1,2,1);
-    //
-    //     refreshValidMoves();
-    //     for (int[] a : getPiece(0,2).getValidMoves()) {
-    //         System.out.println(Arrays.toString(a));
-    //     }
-    //     System.out.println(isPieceOnSquare(3,0));
-    //
-    //
-
-
+    public static void main (String[] args) {
+	ChessBoard c = new ChessBoard();
+	c.setUp();
+	for (int[] a: c.getPiece(6,1).getValidMoves()) {
+	    System.out.println(Arrays.toString(a));
+	}
+    }
 }

@@ -40,10 +40,6 @@ public class Knight extends ChessPiece {
             }
 	}
     }
-    public  ArrayList<int[]> getValidMoves() {
-	return validMoves;
-    }
-
     public String toString() {
         return "K";
     }

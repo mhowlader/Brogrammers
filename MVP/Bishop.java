@@ -76,10 +76,6 @@ public class Bishop extends ChessPiece {
         }
 
     }
-    public  ArrayList<int[]> getValidMoves() {
-	return validMoves;
-    }
-
     public String toString() {
         return "B";
     }

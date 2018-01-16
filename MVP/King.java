@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class King extends ChessPiece {
     //private static int row,col;
@@ -29,8 +30,48 @@ public class King extends ChessPiece {
             }
         }
     }
-    public  ArrayList<int[]> getValidMoves() {
-	return validMoves;
+    public static boolean check() {
+	 String color = getColor();
+	 int[] coord = new int[]{row,col};
+	 if (color.equals("black")) {
+	     for(int[] a: ChessBoard.getWhiteValidMoves()) {
+		 if (Arrays.equals(coord,a)) {
+		     return true;
+		 }
+	     }
+	 }
+	 else if (color.equals("white")) {
+	    for(int[] a: ChessBoard.getBlackValidMoves()) {
+		if (Arrays.equals(coord,a)) {
+		    return true;
+		}
+	    }
+	 }
+	 return false;
+     }
+
+    public static boolean checkMate() {
+	String color = getColor();
+	int[] coord = new int[]{row,col};
+	if (color.equals("black") & check()) {
+	    for(int[] a: ChessBoard.getWhiteValidMoves()) {
+		for(int[] b: getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+			return false;
+		    }
+		}
+	    }
+	}
+	else if (color.equals("white") & check()) {
+	    for(int[] a: ChessBoard.getBlackValidMoves()) {
+		for(int[] b: getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+			return false;
+		    }
+		}
+	    }
+	}
+	return true;
     }
     public String toString() {
 	return "K";
