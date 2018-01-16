@@ -180,7 +180,7 @@ public class ChessBoard {
 
     public String toString() {
         String output = "";
-        String letters="abcdefgh";
+        String letters="ABCDEFGH";
         output+="\n   ";
 
         for (int i=0;i<8;i++) {
