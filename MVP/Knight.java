@@ -6,7 +6,7 @@ public class Knight extends ChessPiece {
         super(x,y,player);
         fillValidMoves();
     }
-    public ArrayList<int[]> fillValidMoves() {
+    public void fillValidMoves() {
         validMoves=new ArrayList<int[]>();
 
         //2d array of all possible moves for a knight
@@ -26,9 +26,9 @@ public class Knight extends ChessPiece {
             int r=b[0]; //row of tempCol
             int c=b[1]; //column of tempCol
             if (ChessBoard.squareExists(r,c)) { //checks if the square is on the chessboard
-              if (!ChessBoard.isPieceOnSquare(r,c) || !sameColor(ChessBoard.getPiece(r,c)) ) { //it's either an empty square or a square with an enemy piece
-                  validMoves.add(b); //add itto validmoves if so
-              }
+		if (!ChessBoard.isPieceOnSquare(r,c) || !sameColor(ChessBoard.getPiece(r,c)) ) { //it's either an empty square or a square with an enemy piece
+		    validMoves.add(b); //add itto validmoves if so
+		}
             }
         }
 
@@ -38,8 +38,10 @@ public class Knight extends ChessPiece {
             if (!ChessBoard.squareExists(a[0],a[1])) {
                 validMoves.remove(a);
             }
-        }
-        return validMoves;
+	}
+    }
+    public  ArrayList<int[]> getValidMoves() {
+	return validMoves;
     }
 
     public String toString() {

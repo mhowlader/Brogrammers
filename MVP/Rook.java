@@ -6,7 +6,7 @@ public class Rook extends ChessPiece {
         super(x,y,player);
         fillValidMoves();
     }
-    public ArrayList<int[]> fillValidMoves() {
+    public void fillValidMoves() {
 		validMoves = new ArrayList<int[]>();
 
         //generates coordinates at the right
@@ -64,8 +64,9 @@ public class Rook extends ChessPiece {
                 break;
             }
         }
-
-        return validMoves;
+    }
+    public  ArrayList<int[]> getValidMoves() {
+	return validMoves;
     }
     public String toString() {
 	return "R";

@@ -7,7 +7,7 @@ public class Bishop extends ChessPiece {
         fillValidMoves();
     }
 
-    public ArrayList<int[]> fillValidMoves() {
+    public void fillValidMoves() {
         validMoves = new ArrayList<int[]>();
 
         //
@@ -77,8 +77,9 @@ public class Bishop extends ChessPiece {
                 }
             }
         }
-
-        return validMoves;
+    }
+    public  ArrayList<int[]> getValidMoves() {
+	return validMoves;
     }
 
     public String toString() {
