@@ -17,7 +17,7 @@ public class ChessBoard {
     public static boolean checkIfLegal( int oldRow, int oldCol, int newRow, int newCol) {
         ChessPiece piece=board[oldRow][oldCol];
         int[] coord= new int[]{newRow,newCol};
-        return piece.validMoves.contains(coord);
+        return piece.getValidMoves.contains(coord);
     }
     public static void movePiece( int oldRow, int oldCol, int newRow, int newCol) { //allows you to move a piece
 

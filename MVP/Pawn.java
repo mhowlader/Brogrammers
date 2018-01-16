@@ -13,7 +13,7 @@ public class Pawn extends ChessPiece {
         fillValidMoves();
     }
     public void fillValidMoves() {
-	validMoves = new ArrayList<int[]>();
+		validMoves = new ArrayList<int[]>();
 
         //generates all valid moves for any given pawn
         if (color.equals("White") ) {
@@ -51,33 +51,33 @@ public class Pawn extends ChessPiece {
         }
     }
     public  ArrayList<int[]> getValidMoves() {
-	return validMoves;
+		return validMoves;
     }
 
     public void upgradePawn(int row, int col, int player){
-	isr = new InputStreamReader(System.in);
-	in = new BufferedReader(isr);
-	String userInput;
+		isr = new InputStreamReader(System.in);
+		in = new BufferedReader(isr);
+		String userInput;
 
-	String errorMessage = "Invalid piece name, available pieces : Bishop, Knight, Queen, Rook";
-	System.out.println("What piece do you want to promote your pawn into? Enter full name of the piece");
-	try {
-	    userInput = in.readLine();
-	    //checks userinput for a valid choice
-	    if(userInput.equals("Bishop")){
-		ChessBoard.setPieceOnBoard(row, col, new Bishop(row, col, player));
-	    } else if(userInput.equals("Knight")){
-		ChessBoard.setPieceOnBoard(row, col, new Knight(row, col, player));
-	    } else if (userInput.equals("Queen")){
-		ChessBoard.setPieceOnBoard(row, col, new Queen(row, col, player));
-	    } else if (userInput.equals("Rook")){
-		ChessBoard.setPieceOnBoard(row, col, new Rook(row, col, player));
-	    } else {
-		System.out.println(errorMessage);
-	    }
-	} catch (IOException e){
-	    System.out.println(errorMessage);
-	}
+		String errorMessage = "Invalid piece name, available pieces : Bishop, Knight, Queen, Rook";
+		System.out.println("What piece do you want to promote your pawn into? Enter full name of the piece");
+		try {
+			userInput = in.readLine();
+			//checks userinput for a valid choice
+			if(userInput.equals("Bishop")){
+			ChessBoard.setPieceOnBoard(row, col, new Bishop(row, col, player));
+			} else if(userInput.equals("Knight")){
+			ChessBoard.setPieceOnBoard(row, col, new Knight(row, col, player));
+			} else if (userInput.equals("Queen")){
+			ChessBoard.setPieceOnBoard(row, col, new Queen(row, col, player));
+			} else if (userInput.equals("Rook")){
+			ChessBoard.setPieceOnBoard(row, col, new Rook(row, col, player));
+			} else {
+			System.out.println(errorMessage);
+			}
+		} catch (IOException e){
+			System.out.println(errorMessage);
+		}
     }
 
     public String toString() {
