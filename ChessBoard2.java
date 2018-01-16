@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class ChessBoard {
+public class ChessBoard2 {
     private final static int BOARD_SIZE = 8; //sets the size of the board
     public static ChessPiece[][] board; // creates a variable board
     public ChessBoard() {
@@ -32,11 +32,9 @@ public class ChessBoard {
 
     }
     public void setUp() {
+
         for (int c=0;c<8;c++) {
-            setPieceOnBoard(1,c,new Pawn(1,c,1)); //white pawns
-        }
-        for (int c=0;c<8;c++) {
-            setPieceOnBoard(6,c,new Pawn(1,c,2)); //black pawns
+            setPieceOnBoard(6,c,new Pawn2(1,c,2)); //black pawns
         }
 
         //White pieces
@@ -58,17 +56,7 @@ public class ChessBoard {
         setPieceOnBoard(7,6,new Knight(7,6,2));
         setPieceOnBoard(7,7,new Rook(7,7,2));
     }
-    public static boolean hasValidMoves() { //FINISH
-        return true;
-    }
-    public static boolean checkMate() {
-        if (hasValidMoves()) { // CREATE HAS VALID MOVES FOR KING
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+
     public static boolean isPieceOnSquare(int x, int y) {
         if (board[x][y] instanceof ChessPiece) {
             return true;
@@ -92,45 +80,11 @@ public class ChessBoard {
         return board[r][c].getColor();
     }
 
-
-    public String toString() {
-        String output = "";
-        String letters="abcdefgh";
-        output+="\n   ";
-
-        for (int i=0;i<8;i++) {
-            output+= "- ";
-        }
-        output+="\n";
-        for( int i =0; i < 8; i++ ) {
-            output += (i+1) + "| ";
-            for( int j=0; j < 8; j++ ) {
-                if (board[i][j] == null) {
-                    output +="  ";
-                }
-                else {
-                    output += board[i][j] + " "; //get(i+1,j+1)
-                }
-            }
-            output += "|\n";
-        }
-        output+="   ";
-        for (int i=0;i<8;i++) {
-            output+= "- ";
-        }
-        output+="\n   ";
-
-        for (int i=0;i<8;i++) {
-            output+= letters.substring (i,i+1) + " ";
-        }
-        return output;
-    }
-
     public static void main (String[] args) {
-        ChessBoard c = new ChessBoard();
-        c.setUp();
-        for (int[] a: c.getPiece(6,1).getValidMoves()) {
+        setUp();
+        for (int[] a: board.getPiece(6,1).getValidMoves()) {
             System.out.println(Arrays.toString(a));
         }
+
     }
 }

@@ -50,6 +50,7 @@ public class Pawn extends ChessPiece {
             }
         }
     }
+
     public  ArrayList<int[]> getValidMoves() {
 		return validMoves;
     }

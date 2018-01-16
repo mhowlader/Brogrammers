@@ -33,6 +33,6 @@ public abstract class ChessPiece {
     public boolean sameColor(ChessPiece a) {
         return this.getColor().equals(a.getColor()); //check if same color
     }
-    public abstract ArrayList<int[]> fillValidMoves();
+    public abstract void fillValidMoves();
 
 }

@@ -6,7 +6,7 @@ public class Queen extends ChessPiece {
         super(x,y,player);
         fillValidMoves();
     }
-    public ArrayList<int[]> fillValidMoves() {
+    public void fillValidMoves() {
         validMoves = new ArrayList<int[]>();
 
         ChessPiece QRook=new Rook(row,col,playerNum);
@@ -14,7 +14,7 @@ public class Queen extends ChessPiece {
         ChessPiece QBishop=new Bishop(row,col,playerNum);
         validMoves.addAll(QBishop.getValidMoves());
 
-        return validMoves;
+
     }
     public String toString() {
         return "Q";
