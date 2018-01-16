@@ -7,5 +7,6 @@ Implement Stalemate
 Implement castle
 Implement pawn promotion
 Implement end-game after 1000 turns
+Implement checkmate and check
 Improve UI
-
+Fix bottom pawns
