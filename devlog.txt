@@ -71,7 +71,23 @@ Alan Wang :: Created Flowchart
 Kevin :: Revised Flowchart (v2)
 ==============================================================
 
-2018-01-05
+2018-01-11
 --------------------------------------------------------------
-Kevin :: Implemented menu feature, started working on playTurn features, revised FlowChart (v3)
+Kevin :: Started progress on Pawn.java -- started validMoves.java and skeletoned the work that needs to be done
+Mohtasim :: 
+Alan ::
+==============================================================
+
+2018-01-14
+--------------------------------------------------------------
+Kevin :: started playerTurn and error handling, worked on validMoves functionality in the pieces
+Mohtasim :: 
+Alan ::
+==============================================================
+
+2018-01-15
+--------------------------------------------------------------
+Kevin :: Added Pawn promotion code, finished playerTurn including error handling
+Mohtasim :: 
+Alan ::
 ==============================================================
