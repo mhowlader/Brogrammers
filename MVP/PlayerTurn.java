@@ -137,8 +137,9 @@ public class PlayerTurn {
         				newR = Integer.parseInt(userInput.substring(1,2)) - 1;
 
                         if (cBoard.checkIfLegal(oldR,oldC,newR,newC)) {
-                            cBoard.movePiece(oldR,oldC,newR,newC);
-                            System.out.println(currentPlayerNum);
+                            cBoard.movePiece(oldR,oldC,newR,newC); //moves piece
+
+                            cBoard.refreshValidMoves(); //refreshes list of legal moves for all pieces
                             if (currentPlayerNum==1) {
                                 currentPlayerNum=2;
                                 System.out.println(currentPlayerNum);
