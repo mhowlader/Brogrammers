@@ -36,7 +36,7 @@ public class ChessBoard {
             setPieceOnBoard(1,c,new Pawn(1,c,1)); //white pawns
         }
         for (int c=0;c<8;c++) {
-            setPieceOnBoard(6,c,new Pawn(1,c,2)); //black pawns
+            setPieceOnBoard(6,c,new Pawn(6,c,2)); //black pawns
         }
 
         //White pieces
@@ -126,11 +126,4 @@ public class ChessBoard {
         return output;
     }
 
-    public static void main (String[] args) {
-        ChessBoard c = new ChessBoard();
-        c.setUp();
-        for (int[] a: c.getPiece(6,1).getValidMoves()) {
-            System.out.println(Arrays.toString(a));
-        }
-    }
 }
