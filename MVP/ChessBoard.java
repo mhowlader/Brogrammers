@@ -101,6 +101,31 @@ public class ChessBoard {
 	}
 	return false;
     }
+
+    public static boolean checkMate(int row, int col) {
+	ChessPiece piece = board[row][col];
+	String color = piece.getColor();
+	int[] coord = new int[]{row,col};
+	if (color.equals("black") & check(row,col)) {
+	    for(int[] a: getWhiteValidMoves()) {
+		for(int[] b: piece.getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+			return false;
+		    }
+		}
+	    }
+	}
+	else if (color.equals("white")) {
+	    for(int[] a: getBlackValidMoves()) {
+		for(int[] b: piece.getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+			return false;
+		    }
+		}
+	    }
+	}
+	return true;
+    }
     public static void blackValidMoves() {
         ChessPiece piece;
 	blackValidMoves = new ArrayList<int[]>();
@@ -110,7 +135,7 @@ public class ChessBoard {
 		if (piece.getColor() == "black") {
 		    for(int[] coord: piece.getValidMoves()) {
 			blackValidMoves.add(coord);
-			    }
+		    }
 		}
 	    }
 	}
@@ -128,7 +153,7 @@ public class ChessBoard {
 		if (piece.getColor() == "white") {
 		    for(int[] coord: piece.getValidMoves()) {
 			whiteValidMoves.add(coord);
-			    }
+		    }
 		}
 	    }
 	}
