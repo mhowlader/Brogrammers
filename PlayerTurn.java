@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.io.*;
 import java.util.*;
 
-public class Woo {
+public class PlayerTurn {
     private static boolean gameOver;
     private static int moveCount;
     private static final String _numbers = "12345678";
@@ -12,7 +12,7 @@ public class Woo {
     private static ChessBoard cBoard;
     private static int currentPlayerNum=1;
 
-    public Woo() {
+    public PlayerTurn() {
 	gameOver = false;
 	moveCount = 0;
 
