@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public abstract class ChessPiece {
-    public ArrayList<int[]> validMoves;
-    public int row, col, playerNum;
-    public String color;
+    public static ArrayList<int[]> validMoves;
+    public static int row, col, playerNum;
+    public static String color;
     public ChessPiece(int x,int y, int player) {
         row=x;
         col=y;
@@ -16,7 +16,7 @@ public abstract class ChessPiece {
 
         }
     }
-    public String getColor() {
+    public static String getColor() {
         return color;
     }
 
@@ -24,10 +24,11 @@ public abstract class ChessPiece {
         return playerNum;
     }
 
-    public ArrayList<int[]> getValidMoves() {
+    public static ArrayList<int[]> getValidMoves() {
         return validMoves;
       }
 
+<<<<<<< HEAD
     public int getRow(){
         return row;
     }
@@ -36,6 +37,8 @@ public abstract class ChessPiece {
         return col;
     }
     
+=======
+>>>>>>> 647678e28c11bf3e39aacf83dce91f002b4bc646
     public boolean sameColor(ChessPiece a) {
         return this.getColor().equals(a.getColor()); //check if same color
     }
