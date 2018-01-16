@@ -28,8 +28,14 @@ public abstract class ChessPiece {
         return validMoves;
       }
 
+    public int getRow(){
+        return row;
+    }
 
-
+    public int getCol(){
+        return col;
+    }
+    
     public boolean sameColor(ChessPiece a) {
         return this.getColor().equals(a.getColor()); //check if same color
     }
