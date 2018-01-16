@@ -80,45 +80,61 @@ public class ChessBoard {
     public static String colorOfSquare(int r, int c) {
         return board[r][c].getColor();
     }
+    /*
     public static void blackValidMoves() {
         ChessPiece piece;
-	blackValidMoves = new ArrayList<int[]>();
-	for (int x = 0; x < 8; x++) {
-	    for (int y = 0; y < 8; y++) {
-		piece = board[x][y];
-		if (piece.getColor() == "black") {
-		    for(int[] coord: piece.getValidMoves()) {
-			blackValidMoves.add(coord);
-		    }
-		}
-	    }
-	}
+        blackValidMoves = new ArrayList<int[]>();
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                piece = board[x][y];
+                if (piece.getColor() == "black") {
+                    for(int[] coord: piece.getValidMoves()) {
+                        blackValidMoves.add(coord);
+                    }
+                }
+            }
+        }
     }
-	
+
     public static ArrayList<int[]> getBlackValidMoves() {
-	return blackValidMoves;
+        return blackValidMoves;
     }
     public static void whiteValidMoves() {
         ChessPiece piece;
-	whiteValidMoves = new ArrayList<int[]>();
-	for (int x = 0; x < 8; x++) {
-	    for (int y = 0; y < 8; y++) {
-		piece = board[x][y];
-		if (piece.getColor() == "white") {
-		    for(int[] coord: piece.getValidMoves()) {
-			whiteValidMoves.add(coord);
-		    }
-		}
-	    }
-	}
+
+        whiteValidMoves = new ArrayList<int[]>();
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                piece = board[x][y];
+                if (piece.getColor() == "white") {
+                    for(int[] coord: piece.getValidMoves()) {
+                        whiteValidMoves.add(coord);
+                    }
+                }
+            }
+        }
     }
 
+
     public static ArrayList<int[]> getWhiteValidMoves() {
-	return whiteValidMoves;
+        return whiteValidMoves;
     }
-    
+    */
+
+    //refreshes valid moves
+    public static void refreshValidMoves() {
+        for (int i=0;i<8;i++) {
+            for (int j=0;j<8;j++) {
+                if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
+                    getPiece(i,j).fillValidMoves();
+                }
+            }
+        }
+    }
+
+
+
     public String toString() {
-<<<<<<< HEAD
         String output = "";
         String letters="ABCDEFGH";
         output+="\n   ";
@@ -149,45 +165,13 @@ public class ChessBoard {
             output+= letters.substring (i,i+1) + " ";
         }
         return output;
-=======
-	String output = "";
-	String letters="abcdefgh";
-	output+="\n   ";
-
-	for (int i=0;i<8;i++) {
-	    output+= "- ";
-	}
-	output+="\n";
-	for( int i =0; i < 8; i++ ) {
-	    output += (i+1) + "| ";
-	    for( int j=0; j < 8; j++ ) {
-		if (board[i][j] == null) {
-		    output +="  ";
-		}
-		else {
-		    output += board[i][j] + " "; //get(i+1,j+1)
-		}
-	    }
-	    output += "|\n";
-	}
-	output+="   ";
-	for (int i=0;i<8;i++) {
-	    output+= "- ";
-	}
-	output+="\n   ";
-
-	for (int i=0;i<8;i++) {
-	    output+= letters.substring (i,i+1) + " ";
-	}
-	return output;
     }
 
     public static void main (String[] args) {
-	ChessBoard c = new ChessBoard();
-	c.setUp();
-	for (int[] a: c.getPiece(6,1).getValidMoves()) {
-	    System.out.println(Arrays.toString(a));
-	}
->>>>>>> 647678e28c11bf3e39aacf83dce91f002b4bc646
+        ChessBoard c = new ChessBoard();
+        c.setUp();
+        for (int[] a: c.getPiece(6,1).getValidMoves()) {
+            System.out.println(Arrays.toString(a));
+        }
     }
 }

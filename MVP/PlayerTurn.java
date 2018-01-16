@@ -173,10 +173,11 @@ public class PlayerTurn {
 		//=================================================================================
 
 		moveCount += 1; //+1 move
-
+/*
 		if (cBoard.checkMate()) { //if in checkmate, end game
 			gameOver = false;
 		}
+        */
 	}
 
 
