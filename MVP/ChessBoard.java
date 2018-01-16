@@ -84,24 +84,24 @@ public class ChessBoard {
     }
 
     public static boolean check(int row, int col) {
-	ChessPiece piece = board[row][col];
-	String color = piece.getColor();
-	int[] coord = new int[]{row,col};
-	if (color.equals("black")) {
-	    for(int[] a: getWhiteValidMoves()) {
-		if (Arrays.equals(coord,a)) {
-		    return true;
-		}
-	    }
-	}
-	else if (color.equals("white")) {
-	    for(int[] a: getBlackValidMoves()) {
-		if (Arrays.equals(coord,a)) {
-		    return true;
-		}
-	    }
-	}
-	return false;
+        ChessPiece piece = board[row][col];
+        String color = piece.getColor();
+        int[] coord = new int[]{row,col};
+        if (color.equals("black")) {
+            for(int[] a: getWhiteValidMoves()) {
+                if (Arrays.equals(coord,a)) {
+                    return true;
+                }
+            }
+        }
+        else if (color.equals("white")) {
+            for(int[] a: getBlackValidMoves()) {
+                if (Arrays.equals(coord,a)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
@@ -175,40 +175,40 @@ public class ChessBoard {
     }
 
     public static ArrayList<int[]> getWhiteValidMoves() {
-	return whiteValidMoves;
+        return whiteValidMoves;
     }
 
     public String toString() {
-	String output = "";
-	String letters="abcdefgh";
-	output+="\n   ";
+        String output = "";
+        String letters="abcdefgh";
+        output+="\n   ";
 
-	for (int i=0;i<8;i++) {
-	    output+= "- ";
-	}
-	output+="\n";
-	for( int i =0; i < 8; i++ ) {
-	    output += (i+1) + "| ";
-	    for( int j=0; j < 8; j++ ) {
-		if (board[i][j] == null) {
-		    output +="  ";
-		}
-		else {
-		    output += board[i][j] + " "; //get(i+1,j+1)
-		}
-	    }
-	    output += "|\n";
-	}
-	output+="   ";
-	for (int i=0;i<8;i++) {
-	    output+= "- ";
-	}
-	output+="\n   ";
+        for (int i=0;i<8;i++) {
+            output+= "- ";
+        }
+        output+="\n";
+        for( int i =0; i < 8; i++ ) {
+            output += (i+1) + "| ";
+            for( int j=0; j < 8; j++ ) {
+                if (board[i][j] == null) {
+                    output +="  ";
+                }
+                else {
+                    output += board[i][j] + " "; //get(i+1,j+1)
+                }
+            }
+            output += "|\n";
+        }
+        output+="   ";
+        for (int i=0;i<8;i++) {
+            output+= "- ";
+        }
+        output+="\n   ";
 
-	for (int i=0;i<8;i++) {
-	    output+= letters.substring (i,i+1) + " ";
-	}
-	return output;
+        for (int i=0;i<8;i++) {
+            output+= letters.substring (i,i+1) + " ";
+        }
+        return output;
     }
 
     //testing ChessBoard sets up properly
