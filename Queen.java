@@ -11,10 +11,14 @@ public class Queen extends ChessPiece {
 
         ChessPiece QRook=new Rook(row,col,playerNum);
         QRook.fillValidMoves();
-        validMoves.addAll(QRook.getValidMoves());
+        for (int[] a: QRook.getValidMoves()) {
+            validMoves.add(a);
+        }
         ChessPiece QBishop=new Bishop(row,col,playerNum);
         QBishop.fillValidMoves();
-        validMoves.addAll(QBishop.getValidMoves());
+        for (int[] a: QBishop.getValidMoves()) {
+            validMoves.add(a);
+        }
 
 
     }

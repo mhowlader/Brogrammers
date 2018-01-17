@@ -3,17 +3,19 @@ import java.io.*;
 import java.util.*;
 
 public class ComputerTurn {
-    private static boolean gameOver;
+    public static boolean gameOver;
     private static int moveCount;
     private static final String _numbers = "12345678";
     private static final String _letters = "ABCDEFGH";
 	  private static InputStreamReader isr;
   	private static BufferedReader in;
-    private static ChessBoard cBoard;
+    public static ChessBoard cBoard;
     private static int currentPlayerNum=1;
     private static String endGameMessage;
 
     public ComputerTurn() {
+        cBoard=new ChessBoard();
+        cBoard.setUp();
 	     gameOver = false;
 	     moveCount = 0;
     }
@@ -100,12 +102,12 @@ public class ComputerTurn {
             System.out.println(cBoard.getPiece(oldR,oldC).getPlayerNum());
             if (userInput.equals("Concede")) {
                 if (currentPlayerNum == 1){
-                    endGameMessage = playGame.getPlayer1Name() + " has conceded!";
-                    errorMessage = playGame.getPlayer1Name() + " has conceded!";
+                    endGameMessage = Woo.getPlayer1Name() + " has conceded!";
+                    errorMessage = Woo.getPlayer1Name() + " has conceded!";
                 }
                 if (currentPlayerNum == 2){
-                    endGameMessage = playGame.getPlayer2Name() + " has conceded!";
-                    errorMessage = playGame.getPlayer1Name() + " has conceded!";
+                    endGameMessage = Woo.getPlayer2Name() + " has conceded!";
+                    errorMessage = Woo.getPlayer1Name() + " has conceded!";
                 }
                 didPlayerEnterValidPair = true;
                 gameOver = true;
@@ -151,12 +153,12 @@ public class ComputerTurn {
 
             if (userInput.equals("Concede")) {
                 if (currentPlayerNum == 1){
-                    endGameMessage = playGame.getPlayer1Name() + " has conceded!";
-                    errorMessage = playGame.getPlayer1Name() + " has conceded!";
+                    endGameMessage = Woo.getPlayer1Name() + " has conceded!";
+                    errorMessage = Woo.getPlayer1Name() + " has conceded!";
                 }
                 if (currentPlayerNum == 2){
-                    endGameMessage = playGame.getPlayer2Name() + " has conceded!";
-                    errorMessage = playGame.getPlayer1Name() + " has conceded!";
+                    endGameMessage = Woo.getPlayer2Name() + " has conceded!";
+                    errorMessage = Woo.getPlayer1Name() + " has conceded!";
                 }
                 didPlayerEnterValidPair = true;
                 gameOver = true;

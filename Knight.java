@@ -26,21 +26,25 @@ public class Knight extends ChessPiece {
             int r=b[0]; //row of tempCol
             int c=b[1]; //column of tempCol
             if (ChessBoard.squareExists(r,c)) { //checks if the square is on the chessboard
-		if (!ChessBoard.isPieceOnSquare(r,c) || !sameColor(ChessBoard.getPiece(r,c)) ) { //it's either an empty square or a square with an enemy piece
-		    validMoves.add(b); //add itto validmoves if so
-		}
+                if (!ChessBoard.isPieceOnSquare(r,c) || !sameColor(ChessBoard.getPiece(r,c)) ) { //it's either an empty square or a square with an enemy piece
+                validMoves.add(b); //add itto validmoves if so
             }
         }
+    }
 
 
-        //deletes invalid ones
-        for (int[] a: validMoves) {
-            if (!ChessBoard.squareExists(a[0],a[1])) {
-                validMoves.remove(a);
-            }
-	}
+    //deletes invalid ones
+    for (int[] a: validMoves) {
+        if (!ChessBoard.squareExists(a[0],a[1])) {
+            validMoves.remove(a);
+        }
     }
-    public String toString() {
-        return "K";
-    }
+}
+public  ArrayList<int[]> getValidMoves() {
+    return validMoves;
+}
+
+public String toString() {
+    return "H";
+}
 }

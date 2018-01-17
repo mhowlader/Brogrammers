@@ -64,7 +64,10 @@ public class Rook extends ChessPiece {
                 break;
             }
         }
-      }
+    }
+    public  ArrayList<int[]> getValidMoves() {
+	return validMoves;
+    }
     public String toString() {
 	return "R";
     }

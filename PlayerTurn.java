@@ -3,21 +3,24 @@ import java.io.*;
 import java.util.*;
 
 public class PlayerTurn {
-    private static boolean gameOver;
+    public static boolean gameOver;
     private static int moveCount;
     private static final String _numbers = "12345678";
     private static final String _letters = "ABCDEFGH";
-	  private static InputStreamReader isr;
-  	private static BufferedReader in;
-    private static ChessBoard cBoard;
+	private static InputStreamReader isr;
+	private static BufferedReader in;
+    public static ChessBoard cBoard;
     private static int currentPlayerNum=1;
-    private static String endGameMessage;
 
     public PlayerTurn() {
-	gameOver = false;
-	moveCount = 0;
+        gameOver = false;
+        moveCount = 0;
+        cBoard=new ChessBoard();
+        cBoard.setUp();
 
     }
+
+
     public static int convertLetter(String letter) {
 		int output = 999;
 		for(int i = 0; i < 8; i++) {
@@ -46,191 +49,188 @@ public class PlayerTurn {
 		return false;
 	}
 
-/**
-  public boolean isStalemate(){
-      if (spaces around king are occupied AND king is not in check){
-        endGameMessage = "Game Over! Stalemate."
-        return true;
-      } else {
-      return false;
+    public static int oppositePlayer() {
+        if (currentPlayerNum==1) {
+            return 2;
+        }
+        else {
+            return 1;
+        }
     }
-  }
-**/
-
-  public static boolean is1000turns(){
-      if (moveCount == 2000){
-        endGameMessage = "Game Over! 1000 Turns has elapsed.";
-        return true;
-      } else {
-        return false;
-      }
-  }
-
-  public static void resetMoveCount(){
-    moveCount = 0;
-  }
 
     public static void play() {
-		isr = new InputStreamReader(System.in);
-		in = new BufferedReader(isr);
+        isr = new InputStreamReader(System.in);
+        in = new BufferedReader(isr);
 
 
 
-		String userInput,LetterOne;
-		boolean didPlayerEnterValidPair;
-		int oldR,oldC,newR,newC;
+        String userInput,LetterOne;
+        boolean didPlayerEnterValidPair;
+        int oldR,oldC,newR,newC;
 
-    if (is1000turns()){
-      gameOver = true; //ends game and displays endgamemessage
-    }
+        if (cBoard.isMyKingInCheck(currentPlayerNum)) {
+            if (cBoard.isCheckMate(currentPlayerNum)) {
+                System.out.println("Player" + oppositePlayer() + "Wins!" );
+                gameOver=true;
+            }
+        }
 
+        if (gameOver==false) {
+            //====================user selects piece========================
+            System.out.println("Choose the piece you want to move (E2)"); //E2
 
-		//====================user selects piece========================
-		System.out.println("Choose the piece you want to move (E2)"); //E2
-
-		String errorMessage = "Invalid Input, please try again";
-		try {
-			userInput = in.readLine();
-			didPlayerEnterValidPair = false;
-      if (userInput.equals("Concede")){
-          if (currentPlayerNum == 1){
-              endGameMessage = playGame.getPlayer1Name() + " has conceded!";
-          }
-          if (currentPlayerNum == 2){
-              endGameMessage = playGame.getPlayer2Name() + " has conceded!";
-          }
-          gameOver = true;
-          }
-			if (userInput.length() == 2){
-				while (!didPlayerEnterValidPair){
-					if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
-						System.out.println("Numbers must be between 1 and 8");
-						try {
-						userInput = in.readLine();
-						} catch (IOException e){
-							System.out.println(errorMessage);
-						} catch (StringIndexOutOfBoundsException siobe){
-							System.out.println(errorMessage);
-						}
-					} else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
-						System.out.println("Letters must be between A and H");
-						try {
-						userInput = in.readLine();
-						} catch (IOException e){
-							System.out.println(errorMessage);
-						} catch (StringIndexOutOfBoundsException siobe){
-							System.out.println(errorMessage);
-						}
-					} else {
-						didPlayerEnterValidPair = true;
-					}
-				}
-
-                //OLDX and OLDY are coordinates on the board
-
-				oldC = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
-				oldR = Integer.parseInt(userInput.substring(1,2)) - 1;
-
-
-
-
-                if (cBoard.isPieceOnSquare(oldR,oldC)) { //check f there is a piece on the square
-
-                    if ( cBoard.getPiece(oldR,oldC).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
-                        for (int[] a: cBoard.getPiece(oldR,oldC).validMoves) {
-                            System.out.println(Arrays.toString(a));
+            String errorMessage = "Invalid Input, please try again";
+            try {
+                userInput = in.readLine();
+                didPlayerEnterValidPair = false;
+                if (userInput.length() == 2){
+                    while (!didPlayerEnterValidPair){
+                        if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
+                            System.out.println("Numbers must be between 1 and 8");
+                            try {
+                                userInput = in.readLine();
+                            } catch (IOException e){
+                                System.out.println(errorMessage);
+                            } catch (StringIndexOutOfBoundsException siobe){
+                                System.out.println(errorMessage);
+                            }
+                        } else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
+                            System.out.println("Letters must be between A and H");
+                            try {
+                                userInput = in.readLine();
+                            } catch (IOException e){
+                                System.out.println(errorMessage);
+                            } catch (StringIndexOutOfBoundsException siobe){
+                                System.out.println(errorMessage);
+                            }
+                        } else {
+                            didPlayerEnterValidPair = true;
                         }
-                        System.out.println(cBoard.getPiece(oldR,oldC).getColor());
-                        System.out.println(oldR);
-                        System.out.println(oldC);
-                        System.out.println("Choose the location you want to move the piece to"); //request user input
-        				//====================user selects destination========================
+                    }
 
-        				userInput = in.readLine();
-        				didPlayerEnterValidPair = false;
+                    //OLDX and OLDY are coordinates on the board
 
-        				while (!didPlayerEnterValidPair){
-        					if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
-        						System.out.println("Numbers must be between 1 and 8");
-        						try {
-        						userInput = in.readLine();
-        						} catch (IOException e){
-        							System.out.println(errorMessage);
-        						} catch (StringIndexOutOfBoundsException siobe){
-        							System.out.println(errorMessage);
-        						}
-        					} else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
-        						System.out.println("Letters must be between A and H");
-        						try {
-        						userInput = in.readLine();
-        						} catch (IOException e){
-        							System.out.println(errorMessage);
-        						} catch (StringIndexOutOfBoundsException siobe){
-        							System.out.println(errorMessage);
-        						}
-        					} else {
-        						didPlayerEnterValidPair = true;
-        					}
-        				}
+                    oldC = convertLetter(userInput.substring(0,1)); //sets the position of the piece you want to move
+                    oldR = Integer.parseInt(userInput.substring(1,2)) - 1;
 
-        				newC = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
-        				newR = Integer.parseInt(userInput.substring(1,2)) - 1;
 
-                        if (cBoard.checkIfLegal(oldR,oldC,newR,newC)) {
-                            cBoard.movePiece(oldR,oldC,newR,newC); //moves piece
 
-                            cBoard.refreshValidMoves(); //refreshes list of legal moves for all pieces
-                            if (currentPlayerNum==1) {
-                                currentPlayerNum=2;
-                                System.out.println(currentPlayerNum);
+
+                    if (cBoard.isPieceOnSquare(oldR,oldC)) { //check f there is a piece on the square
+
+                        if ( cBoard.getPiece(oldR,oldC).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
+                            for (int[] a: cBoard.getPiece(oldR,oldC).validMoves) {
+                                System.out.println(Arrays.toString(a));
+                            }
+                            System.out.println(cBoard.getPiece(oldR,oldC).getColor());
+                            System.out.println(oldR);
+                            System.out.println(oldC);
+                            System.out.println("Choose the location you want to move the piece to"); //request user input
+                            //====================user selects destination========================
+
+                            userInput = in.readLine();
+                            didPlayerEnterValidPair = false;
+
+                            while (!didPlayerEnterValidPair){
+                                if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
+                                    System.out.println("Numbers must be between 1 and 8");
+                                    try {
+                                        userInput = in.readLine();
+                                    } catch (IOException e){
+                                        System.out.println(errorMessage);
+                                    } catch (StringIndexOutOfBoundsException siobe){
+                                        System.out.println(errorMessage);
+                                    }
+                                } else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
+                                    System.out.println("Letters must be between A and H");
+                                    try {
+                                        userInput = in.readLine();
+                                    } catch (IOException e){
+                                        System.out.println(errorMessage);
+                                    } catch (StringIndexOutOfBoundsException siobe){
+                                        System.out.println(errorMessage);
+                                    }
+                                } else {
+                                    didPlayerEnterValidPair = true;
+                                }
+                            }
+
+                            newC = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
+                            newR = Integer.parseInt(userInput.substring(1,2)) - 1;
+
+                            if (cBoard.checkIfLegal(oldR,oldC,newR,newC)) {
+                                // if (!cBoard.moveCausesMyKingCheck(oldR,oldC,newR,newC,currentPlayerNum,cBoard)) {
+                                ChessPiece pieceAtOld=cBoard.getPiece(oldR,oldC);
+                                boolean isPieceAtNew = false;
+                                ChessPiece pieceAtNew=null;
+
+                                if (cBoard.isPieceOnSquare(newR,newC)) {
+                                    pieceAtNew=cBoard.getPiece(newR,newC);
+                                    isPieceAtNew=true;
+                                }
+
+                                cBoard.movePiece(oldR,oldC,newR,newC); //moves piece
+                                if (!cBoard.isMyKingInCheck(currentPlayerNum)) {
+                                    cBoard.refreshValidMoves(); //refreshes list of legal moves for all pieces
+                                    if (currentPlayerNum==1) {
+                                        currentPlayerNum=2;
+                                        System.out.println(currentPlayerNum);
+                                    }
+                                    else {
+                                        currentPlayerNum=1;
+                                    }
+                                }
+                                else {
+                                    cBoard.movePiece(newR,newC,oldR,oldC);
+                                    if (isPieceAtNew) {
+                                        cBoard.setPieceOnBoard(newR,newC,pieceAtNew);
+                                    }
+                                    System.out.println("Your King is in Check! Try again.");
+                                }
                             }
                             else {
-                                currentPlayerNum=1;
+                                System.out.println("Illegal Move. You can't do that. Pick up a rule book. Try again.");
                             }
                         }
                         else {
-                            System.out.println("Illegal Move. You can't do that. Pick up a rule book. Try again.");
+                            System.out.println("That's not your piece. Try again" + currentPlayerNum);
                         }
                     }
                     else {
-                        System.out.println("That's not your piece. Try again" + currentPlayerNum);
+                        System.out.println("There's no Piece on that Square. Try again");
                     }
-                }
-                else {
-                    System.out.println("There's no Piece on that Square. Try again");
-                }
 
 
-            }else {
+                }else {
+                    System.out.println(errorMessage);
+                }
+            } catch (IOException e){
+                System.out.println(errorMessage);
+            } catch (StringIndexOutOfBoundsException siobe){
                 System.out.println(errorMessage);
             }
-		} catch (IOException e){
-			System.out.println(errorMessage);
-		} catch (StringIndexOutOfBoundsException siobe){
-			System.out.println(errorMessage);
-		}
 
-		//=================================================================================
+            //=================================================================================
 
-		moveCount += 1; //+1 move
+            moveCount += 1; //+1 move
+        }
+        // if (cBoard.checkMate()) { //if in checkmate, end game
+        // 	gameOver = false;
+        // }
+    }
 
-		if (King.isCheckMate()) { //if in checkmate, end game
-			//gameOver = true;
-		}
 
-	}
+
 
 
     public static void main(String[] args) {
-    	cBoard = new ChessBoard();
-	    cBoard.setUp();
-      resetMoveCount();
+	cBoard = new ChessBoard();
+	cBoard.setUp();
 
-      endGameMessage = "Checkmate! Game over.";
-	     while (!gameOver) {
-	        System.out.println(cBoard);
-	         play();
-	        }
-	     System.out.println(endGameMessage);
+	while (!gameOver) {
+	    System.out.println(cBoard);
+	    play();
+	}
+	System.out.println("Game Over!");
     }
 }
