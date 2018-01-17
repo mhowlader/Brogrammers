@@ -7,10 +7,11 @@ public class PlayerTurn {
     private static int moveCount;
     private static final String _numbers = "12345678";
     private static final String _letters = "ABCDEFGH";
-	private static InputStreamReader isr;
-	private static BufferedReader in;
+	  private static InputStreamReader isr;
+  	private static BufferedReader in;
     private static ChessBoard cBoard;
     private static int currentPlayerNum=1;
+    private static String endGameMessage;
 
     public PlayerTurn() {
 	gameOver = false;
@@ -45,6 +46,30 @@ public class PlayerTurn {
 		return false;
 	}
 
+/**
+  public boolean isStalemate(){
+      if (spaces around king are occupied AND king is not in check){
+        endGameMessage = "Game Over! Stalemate."
+        return true;
+      } else {
+      return false;
+    }
+  }
+**/
+
+  public static boolean is1000turns(){
+      if (moveCount == 2000){
+        endGameMessage = "Game Over! 1000 Turns has elapsed.";
+        return true;
+      } else {
+        return false;
+      }
+  }
+
+  public static void resetMoveCount(){
+    moveCount = 0;
+  }
+
     public static void play() {
 		isr = new InputStreamReader(System.in);
 		in = new BufferedReader(isr);
@@ -54,13 +79,15 @@ public class PlayerTurn {
 		String userInput,LetterOne;
 		boolean didPlayerEnterValidPair;
 		int oldR,oldC,newR,newC;
+
+    if (is1000turns()){
+      gameOver = true; //ends game and displays endgamemessage
+    }
+
+
 		//====================user selects piece========================
-		if (currentPlayerNum == 1){
-      System.out.println(playGame.getPlayer1Name() + ", Choose the piece you want to move (FORMAT: E2)"); //E2
-    }
-    if (currentPlayerNum == 2){
-        System.out.println(playGame.getPlayer2Name() + ", Choose the piece you want to move (FORMAT: E2)"); //E2
-    }
+		System.out.println("Choose the piece you want to move (E2)"); //E2
+
 		String errorMessage = "Invalid Input, please try again";
 		try {
 			userInput = in.readLine();
@@ -178,23 +205,23 @@ public class PlayerTurn {
 
 		moveCount += 1; //+1 move
 
-		if (cBoard.checkMate()) { //if in checkmate, end game
-			gameOver = false;
+		if (King.isCheckMate()) { //if in checkmate, end game
+			gameOver = true;
 		}
+
 	}
-
-
-
 
 
     public static void main(String[] args) {
-	cBoard = new ChessBoard();
-	cBoard.setUp();
+    	cBoard = new ChessBoard();
+	    cBoard.setUp();
+      resetMoveCount();
 
-	while (!gameOver) {
-	    System.out.println(cBoard);
-	    play();
-	}
-	System.out.println("Game Over!");
+      endGameMessage = "Checkmate! Game over.";
+	     while (!gameOver) {
+	        System.out.println(cBoard);
+	         play();
+	        }
+	     System.out.println(endGameMessage);
     }
 }
