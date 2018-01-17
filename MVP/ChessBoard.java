@@ -94,7 +94,7 @@ public class ChessBoard {
 	    }
 	}
     }
-	
+
     public static ArrayList<int[]> getBlackValidMoves() {
 	return blackValidMoves;
     }
@@ -116,42 +116,10 @@ public class ChessBoard {
     public static ArrayList<int[]> getWhiteValidMoves() {
 	return whiteValidMoves;
     }
-    
+
     public String toString() {
-<<<<<<< HEAD
-        String output = "";
-        String letters="ABCDEFGH";
-        output+="\n   ";
-
-        for (int i=0;i<8;i++) {
-            output+= "- ";
-        }
-        output+="\n";
-        for( int i =0; i < 8; i++ ) {
-            output += (i+1) + "| ";
-            for( int j=0; j < 8; j++ ) {
-                if (board[i][j] == null) {
-                    output +="  ";
-                }
-                else {
-                    output += board[i][j] + " "; //get(i+1,j+1)
-                }
-            }
-            output += "|\n";
-        }
-        output+="   ";
-        for (int i=0;i<8;i++) {
-            output+= "- ";
-        }
-        output+="\n   ";
-
-        for (int i=0;i<8;i++) {
-            output+= letters.substring (i,i+1) + " ";
-        }
-        return output;
-=======
 	String output = "";
-	String letters="abcdefgh";
+	String letters="ABCDEFGH";
 	output+="\n   ";
 
 	for (int i=0;i<8;i++) {
@@ -188,6 +156,6 @@ public class ChessBoard {
 	for (int[] a: c.getPiece(6,1).getValidMoves()) {
 	    System.out.println(Arrays.toString(a));
 	}
->>>>>>> 647678e28c11bf3e39aacf83dce91f002b4bc646
+
     }
 }
