@@ -4,8 +4,6 @@ Kevin Feng, Mohtasim Howlader, Alan Wang
 
 # Project: Matrix Game Simulator
 
-This is a game simulator of existing games that make use of or are played on matrices. Currently this project will have two games: Chess and Checkers. Both are 2 player.
-
 In order to play:
 
 Compile Woo.java
