@@ -11,6 +11,7 @@ public class PlayerTurn {
 	private static BufferedReader in;
     public static ChessBoard cBoard;
     private static int currentPlayerNum=1;
+    public static String playerName;
 
     public PlayerTurn() {
         gameOver = false;
@@ -68,16 +69,25 @@ public class PlayerTurn {
         boolean didPlayerEnterValidPair;
         int oldR,oldC,newR,newC;
 
+
+
+        if (currentPlayerNum==1) {
+            playerName=Woo.getPlayer1Name();
+        }
+        else{
+            playerName=Woo.getPlayer2Name();
+        }
+
         if (cBoard.isMyKingInCheck(currentPlayerNum)) {
             if (cBoard.isCheckMate(currentPlayerNum)) {
-                System.out.println("Player" + oppositePlayer() + "Wins!" );
+                System.out.println(playerName +  " Wins!" );
                 gameOver=true;
             }
         }
 
         if (gameOver==false) {
             //====================user selects piece========================
-            System.out.println("Choose the piece you want to move (E2)"); //E2
+            System.out.println(playerName + ", Choose the piece you want to move (E2)"); //E2
 
             String errorMessage = "Invalid Input, please try again";
             try {
@@ -119,13 +129,9 @@ public class PlayerTurn {
                     if (cBoard.isPieceOnSquare(oldR,oldC)) { //check f there is a piece on the square
 
                         if ( cBoard.getPiece(oldR,oldC).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
-                            for (int[] a: cBoard.getPiece(oldR,oldC).validMoves) {
-                                System.out.println(Arrays.toString(a));
-                            }
-                            System.out.println(cBoard.getPiece(oldR,oldC).getColor());
-                            System.out.println(oldR);
-                            System.out.println(oldC);
-                            System.out.println("Choose the location you want to move the piece to"); //request user input
+
+                        
+                            System.out.println(playerName + ", Choose the location you want to move the piece to:"); //request user input
                             //====================user selects destination========================
 
                             userInput = in.readLine();
@@ -174,7 +180,7 @@ public class PlayerTurn {
                                     cBoard.refreshValidMoves(); //refreshes list of legal moves for all pieces
                                     if (currentPlayerNum==1) {
                                         currentPlayerNum=2;
-                                        System.out.println(currentPlayerNum);
+
                                     }
                                     else {
                                         currentPlayerNum=1;
