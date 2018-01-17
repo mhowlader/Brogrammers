@@ -230,6 +230,7 @@ public class ChessBoard {
     //
     // }
 
+    //checks if the specified player's king is in check
     public static boolean isMyKingInCheck(int player) {
         int[] kingCoord;
 
@@ -263,6 +264,41 @@ public class ChessBoard {
             }
         }
         return false;
+    }
+
+    //for all pieces of that player, it does every possible legal move and checks if it is still in check afterwards
+    //if something makes it not check anymore, that means that it is not checkmate yet
+    public static boolean isCheckMate(int player) {
+
+        boolean isPieceAtNew = false;
+        ChessPiece pieceAtNew=null;
+
+        for (int r=0;r<8;r++) {
+            for (int c=0;c<8;c++) {
+                if (isPieceOnSquare(r,c) ) {
+                    if (getPiece(r,c).getPlayerNum()==player) {
+                        for (int[] a:getPiece(r,c).getValidMoves()) {
+                            if (isPieceOnSquare(a[0],a[1])) {
+                                pieceAtNew=getPiece(a[0],a[1]);
+                                isPieceAtNew=true;
+                            }
+                            movePiece(r,c,a[0],a[1]);
+                            if (!isMyKingInCheck(player) ) { //if a move makes the king not in check
+                                return false;
+                            }
+                            else {
+                                movePiece(a[0],a[1],r,c);
+                                if (isPieceAtNew) {
+                                    setPieceOnBoard(a[0],a[1],pieceAtNew);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     public String toString() {
