@@ -3,6 +3,7 @@ import java.util.Arrays;
 
 public class King extends ChessPiece {
     //private static int row,col;
+    public static ArrayList<int[]> temp;
     public King(int x,int y, int player) { //use coor index at 0
         super(x,y,player);
         fillValidMoves();
@@ -81,31 +82,31 @@ public class King extends ChessPiece {
 
 	return true;
     }
-
-    public void restrictionsValidMoves() {
+     public void restrictionsValidMoves() {
 	String color = getColor();
 	int[] coord = new int[]{row,col};
 	int ctr = 0;
+        temp = new ArrayList<int[]>(validMoves);
         validMoves.clear();
-	if (color.equals("Black") & isCheck()) {
+	if (color.equals("black") & isCheck()) {
 	    for(int[] a: ChessBoard.getWhiteValidMoves()) {
-		for(int[] b: getValidMoves()) {
+		for(int[] b: temp) {
 		    if (!Arrays.equals(b,a)) {
 		        validMoves.add(ctr,b);
 		    }
 		}
 	    }
 	}
-	else if (color.equals("White") & isCheck()) {
+	else if (color.equals("white") & isCheck()) {
 	    for(int[] a: ChessBoard.getBlackValidMoves()) {
-		for(int[] b: getValidMoves()) {
+		for(int[] b: temp) {
 		    if (!Arrays.equals(b,a)) {
 			validMoves.add(ctr,b);
 		    }
 		}
 	    }
 	}
-    }
+     }
     public String toString() {
 	return "K";
     }
