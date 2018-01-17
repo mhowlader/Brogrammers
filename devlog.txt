@@ -12,6 +12,7 @@ Matrix Game Simulator
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <Wow, we so BOSS bc...>
+-Creating a function that would restrict where the King moves based on whether it is in check or if it will be in check
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
