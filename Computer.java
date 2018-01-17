@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Computer{
-  private static ArrayList<String[]> piecesAI;
+  private static ArrayList<ChessPiece> piecesAI;
   private static ArrayList<int[]> validMovesAI;
 
-  public ArrayList<String[]> findAIPieces(int player){ //creates an arraylist of pieces available
-    String color;
 
-    piecesAI = new ArrayList<String[]>();
+  public ArrayList<ChessPiece> findAIPieces(int player){ //creates an arraylist of pieces available
+    String color;
+    piecesAI = new ArrayList<ChessPiece>();
 
     if (player == 1){ //input 1 = white
       color = "White";
@@ -62,12 +62,12 @@ public class Computer{
     int randomNumPieces = random.nextInt(findAIPieceCount(2)) + 1; //generates random number that is limited by the max number of black pieces
     int oldX, oldY, newX, newY;
 
-    ChessPiece piece = findAIPieces(2)[randomNumPieces];
+    ChessPiece piece = findAIPieces(2).get(randomNumPieces);
 
     oldX = piece.getRow();
     oldY = piece.getCol();
 
-    int randomNumMoves = random.nextInt(getValidMoves.size()) + 1; //generates random number that is limited by the max number of validmoves
+    int randomNumMoves = random.nextInt(validMovesAI.size()) + 1; //generates random number that is limited by the max number of validmoves
 
     newX = piece.getValidMoves[randomNumMoves];
     newY = piece.getValidMoves[randomNumMoves];
