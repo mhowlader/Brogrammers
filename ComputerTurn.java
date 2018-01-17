@@ -226,8 +226,9 @@ public class ComputerTurn {
 
           System.out.println(cBoard.getBoard());
 
+
+}}
 /**
-}
 public static void main(String[] args) {
   cBoard = new ChessBoard();
   cBoard.setUp();
