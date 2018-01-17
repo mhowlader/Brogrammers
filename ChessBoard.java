@@ -167,7 +167,28 @@ public class ChessBoard {
         }
         return output;
     }
+//=========================Pawn Promotion==================
+    public static void pawnUpgradeBoard(){
 
+      int player = 0;
+
+      for (int j = 0; j < 8; j++){
+          if (getPiece(0,j) instanceof Pawn){ //when pawns reach the top, they must be black and promoted
+              Pawn.promotePawn(0, j, 2);
+              break;
+              }
+          }
+
+
+         for (int j = 0; j < 8; j++){
+             if (getPiece(7,j) instanceof Pawn){ //when pawns reach the bottom, they must be white and promoted
+                 Pawn.promotePawn(7, j, 1);
+                 break;
+             }
+         }
+    }
+
+//=========================================================
     // testing ChessBoard sets up properly
     public static void main (String[] args) {
         ChessBoard c=new ChessBoard();
