@@ -73,8 +73,34 @@ public class King extends ChessPiece {
 		}
 	    }
 	}
+
 	return true;
     }
+
+    public void restrictionsValidMoves() {
+	String color = getColor();
+	int[] coord = new int[]{row,col};
+	int ctr = 0;
+	if (color.equals("black") & check()) {
+	    for(int[] a: ChessBoard.getWhiteValidMoves()) {
+		for(int[] b: getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+		        validMoves[ctr] = b;
+		    }
+		}
+	    }
+	}
+	else if (color.equals("white") & check()) {
+	    for(int[] a: ChessBoard.getBlackValidMoves()) {
+		for(int[] b: getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+		        validMoves[ctr] = b;
+		    }
+		}
+	    }
+	}
+    }
+    
     public String toString() {
 	return "K";
     }
