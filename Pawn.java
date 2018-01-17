@@ -52,9 +52,6 @@ public class Pawn extends ChessPiece {
         }
     }
 
-    public  ArrayList<int[]> getValidMoves() {
-		return validMoves;
-    }
 
     public void upgradePawn(int row, int col, int player){
 		isr = new InputStreamReader(System.in);

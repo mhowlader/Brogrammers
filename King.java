@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class King extends ChessPiece {
     //private static int row,col;
@@ -29,8 +30,76 @@ public class King extends ChessPiece {
             }
         }
     }
-    public  ArrayList<int[]> getValidMoves() {
-	return validMoves;
+    public static boolean isCheck() {
+	 String color = getColor();
+	 int[] coord = new int[]{row,col};
+	 if (color.equals("Black")) {
+	     for(int[] a: ChessBoard.getWhiteValidMoves()) {
+		 if (Arrays.equals(coord,a)) {
+       System.out.println("YOU ARE IN CHECK!");
+		     return true;
+		 }
+	     }
+	 }
+	 if (color.equals("White")) {
+	    for(int[] a: ChessBoard.getBlackValidMoves()) {
+		if (Arrays.equals(coord,a)) {
+      System.out.println("YOU ARE IN CHECK!");
+		    return true;
+		}
+	    }
+	 }
+	 return false;
+     }
+
+    public static boolean isCheckMate() {
+	     String color = getColor();
+	      int[] coord = new int[]{row,col};
+	       if (color.equals("Black") & isCheck()) {
+	          for(int[] a: ChessBoard.getWhiteValidMoves()) {
+		            for(int[] b: getValidMoves()) {
+		                if (!Arrays.equals(b,a)) {
+			                   return false;
+		                }
+		            }
+           }
+	      }
+	else if (color.equals("White") & isCheck()) {
+	    for(int[] a: ChessBoard.getBlackValidMoves()) {
+		for(int[] b: getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+			return false;
+		    }
+		}
+	    }
+	}
+
+	return true;
+    }
+
+    public void restrictionsValidMoves() {
+	String color = getColor();
+	int[] coord = new int[]{row,col};
+	int ctr = 0;
+        validMoves.clear();
+	if (color.equals("black") & isCheck()) {
+	    for(int[] a: ChessBoard.getWhiteValidMoves()) {
+		for(int[] b: getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+		        validMoves.add(ctr,b);
+		    }
+		}
+	    }
+	}
+	else if (color.equals("white") & isCheck()) {
+	    for(int[] a: ChessBoard.getBlackValidMoves()) {
+		for(int[] b: getValidMoves()) {
+		    if (!Arrays.equals(b,a)) {
+			validMoves.add(ctr,b);
+		    }
+		}
+	    }
+	}
     }
     public String toString() {
 	return "K";
