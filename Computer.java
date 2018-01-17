@@ -8,7 +8,7 @@ public class Computer{
 
 
   public ArrayList<ChessPiece> findAIPieces(int player){ //creates an arraylist of pieces available
-    String color;
+    String color = "NO COLOR";
     piecesAI = new ArrayList<ChessPiece>();
 
     if (player == 1){ //input 1 = white
@@ -31,7 +31,7 @@ public class Computer{
   }
 
   public int findAIPieceCount(int player){
-    String color;
+    String color = "NO COLOR";
     int pieceCount = 0;
 
     if (player == 1){ //input 1 = white
@@ -69,11 +69,14 @@ public class Computer{
 
     int randomNumMoves = random.nextInt(validMovesAI.size()) + 1; //generates random number that is limited by the max number of validmoves
 
-    newX = piece.getValidMoves[randomNumMoves];
-    newY = piece.getValidMoves[randomNumMoves];
+    newX = piece.getValidMoves().get(randomNumMoves)[0];
+    newY = piece.getValidMoves().get(randomNumMoves)[1];
 
     ChessBoard.movePiece(oldX, oldY, newX, newY);
 
   }
 
+  public static void main (String args[]){ //testing methods
+
+  }
 }
