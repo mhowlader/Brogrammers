@@ -110,6 +110,7 @@ public class ComputerTurn {
                 didPlayerEnterValidPair = true;
                 gameOver = true;
                 break;
+
               } else if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
   						System.out.println("Numbers must be between 1 and 8");
 
@@ -129,23 +130,11 @@ public class ComputerTurn {
             } else if (!((cBoard.getPiece(oldR,oldC)).getPlayerNum() == 1)){
               System.out.println("This is not your piece, Try Again");
               userInput = in.readLine();
-            } else{
-                for (int[] a: cBoard.getPiece(oldR,oldC).validMoves) {
-                    System.out.println(Arrays.toString(a));
-                }
-                System.out.println(cBoard.getPiece(oldR,oldC).getColor());
-                System.out.println(oldR);
-                System.out.println(oldC);
-                didPlayerEnterValidPair = true;
-            }
-          }
+            } else {
+            System.out.println("Choose the location you want to move the piece to"); //request user input
+            userInput = in.readLine();
 
-
-          System.out.println("Choose the location you want to move the piece to"); //request user input
-          userInput = in.readLine();
-          didPlayerEnterValidPair = false;
         //====================user selects destination========================
-          while (!didPlayerEnterValidPair){
             newC = convertLetter(userInput.substring(0,1)); //sets the new position of the piece you want to move
             newR = Integer.parseInt(userInput.substring(1,2)) - 1;
 
@@ -199,19 +188,14 @@ public class ComputerTurn {
               System.out.println("You can't move there, Try Again");
               userInput = in.readLine();
             }else {
-                for (int[] a: cBoard.getPiece(oldR,oldC).validMoves) {
-                    System.out.println(Arrays.toString(a));
-                }
-                System.out.println(cBoard.getPiece(oldR,oldC).getColor());
-                System.out.println(oldR);
-                System.out.println(oldC);
-                didPlayerEnterValidPair = true;
-            }
+              cBoard.movePiece(oldR,oldC,newR,newC);
+              didPlayerEnterValidPair = true;
           }
+        }
+      }
+    }
 
-          cBoard.movePiece(oldR,oldC,newR,newC);
-
-        } catch (IOException e){
+         catch (IOException e){
             System.out.println(errorMessage);
           } catch (StringIndexOutOfBoundsException siobe){
             System.out.println(errorMessage);
@@ -228,6 +212,7 @@ public class ComputerTurn {
 
 
 }
+
 public static void main(String[] args) {
   cBoard = new ChessBoard();
   cBoard.setUp();
