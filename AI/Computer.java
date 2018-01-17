@@ -20,7 +20,7 @@ public class Computer{
 
     for (int i = 0; i < 8; i++){
       for (int j = 0; j < 8; j++){
-        if ((ChessBoard.colorOfSquare(i, j).equals(color)){ //checks if the piece belongs to the CPU
+        if (ChessBoard.colorOfSquare(i, j).equals(color)){ //checks if the piece belongs to the CPU
           piecesAI.add(ChessBoard.getPiece(i,j)); //if it belongs, add the piece to list
         }
       }
@@ -43,7 +43,7 @@ public class Computer{
 
     for (int i = 0; i < 8; i++){
       for (int j = 0; j < 8; j++){
-        if ((ChessBoard.colorOfSquare(i, j).equals(color)){ //checks if the piece belongs to the CPU
+        if (ChessBoard.colorOfSquare(i, j).equals(color)){ //checks if the piece belongs to the CPU
           pieceCount += 1; //if it belongs, add the piece to list
         }
       }
