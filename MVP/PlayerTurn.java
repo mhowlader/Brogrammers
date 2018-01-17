@@ -7,10 +7,11 @@ public class PlayerTurn {
     private static int moveCount;
     private static final String _numbers = "12345678";
     private static final String _letters = "ABCDEFGH";
-	private static InputStreamReader isr;
-	private static BufferedReader in;
+	  private static InputStreamReader isr;
+  	private static BufferedReader in;
     private static ChessBoard cBoard;
     private static int currentPlayerNum=1;
+    private String endGameMessage;
 
     public PlayerTurn() {
 	gameOver = false;
@@ -45,6 +46,30 @@ public class PlayerTurn {
 		return false;
 	}
 
+/**
+  public boolean isStalemate(){
+      if (spaces around king are occupied AND king is not in check){
+        endGameMessage = "Game Over! Stalemate."
+        return true;
+      } else {
+      return false;
+    }
+  }
+**/
+
+  public boolean is1000turns(){
+      if (moveCount == 2000){
+        endGameMessage = "Game Over! 1000 Turns has elapsed."
+        return true;
+      } else {
+        return false;
+      }
+  }
+
+  public void resetMoveCount(){
+    moveCount = 0;
+  }
+
     public static void play() {
 		isr = new InputStreamReader(System.in);
 		in = new BufferedReader(isr);
@@ -54,6 +79,12 @@ public class PlayerTurn {
 		String userInput,LetterOne;
 		boolean didPlayerEnterValidPair;
 		int oldR,oldC,newR,newC;
+
+    if (is1000turns){
+      gameOver = true;
+    }
+
+
 		//====================user selects piece========================
 		System.out.println("Choose the piece you want to move (E2)"); //E2
 
@@ -175,22 +206,20 @@ public class PlayerTurn {
 		moveCount += 1; //+1 move
 
 		if (cBoard.checkMate()) { //if in checkmate, end game
-			gameOver = false;
+			gameOver = true;
 		}
 	}
 
 
-
-
-
     public static void main(String[] args) {
-	cBoard = new ChessBoard();
-	cBoard.setUp();
-
-	while (!gameOver) {
-	    System.out.println(cBoard);
-	    play();
-	}
-	System.out.println("Game Over!");
+    	cBoard = new ChessBoard();
+	    cBoard.setUp();
+      resetMoveCount();
+      endGameMessage = "Checkmate! Game over.";
+	     while (!gameOver) {
+	        System.out.println(cBoard);
+	         play();
+	        }
+	     System.out.println(endGameMessage);
     }
 }
