@@ -30,6 +30,11 @@ public class King extends ChessPiece {
             }
         }
     }
+
+    public static ArrayList<int[]> getValidMoves() {
+        return validMoves;
+      }
+      
     public static boolean isCheck() {
 	 String color = getColor();
 	 int[] coord = new int[]{row,col};
@@ -82,7 +87,7 @@ public class King extends ChessPiece {
 	int[] coord = new int[]{row,col};
 	int ctr = 0;
         validMoves.clear();
-	if (color.equals("black") & isCheck()) {
+	if (color.equals("Black") & isCheck()) {
 	    for(int[] a: ChessBoard.getWhiteValidMoves()) {
 		for(int[] b: getValidMoves()) {
 		    if (!Arrays.equals(b,a)) {
@@ -91,7 +96,7 @@ public class King extends ChessPiece {
 		}
 	    }
 	}
-	else if (color.equals("white") & isCheck()) {
+	else if (color.equals("White") & isCheck()) {
 	    for(int[] a: ChessBoard.getBlackValidMoves()) {
 		for(int[] b: getValidMoves()) {
 		    if (!Arrays.equals(b,a)) {
