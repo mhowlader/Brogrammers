@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 
 public class PlayerTurn {
-    private static boolean gameOver;
+    protected static boolean gameOver;
     private static int moveCount;
     private static final String _numbers = "12345678";
     private static final String _letters = "ABCDEFGH";

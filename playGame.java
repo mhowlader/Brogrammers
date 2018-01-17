@@ -8,6 +8,7 @@ public class playGame {
 	private BufferedReader in;
 	private static String player1Name;
 	private static String player2Name;
+	private static ChessBoard cBoard;
 
 	public playGame() {
 		gameChosen = false;
@@ -82,11 +83,12 @@ public class playGame {
 
 		while (gameSelection == 1) { //run chess 2 players here
 			System.out.println("now playing 2 player chess");
-			ChessBoard = new ChessBoard();
-			ChessBoard.setUp();
+			cBoard = new ChessBoard();
+			cBoard.setUp();
+			PlayerTurn.resetMoveCount();
 
 			while (!(PlayerTurn.gameOver)) {
-			    System.out.println(ChessBoad.getBoard());
+			    System.out.println(ChessBoard.getBoard());
 			    PlayerTurn.play();
 			}
 			System.out.println("Game Over!");
@@ -95,14 +97,14 @@ public class playGame {
 
 		while (gameSelection == 2) { //run chess single player here
 			System.out.println("now playing against an AI");
-			ChessBoard = new ChessBoard();
+			cBoard = new ChessBoard();
 			ChessBoard.setUp();
-			resetMoveCount();
+			ComputerTurn.resetMoveCount();
 
-			endGameMessage = "Checkmate! Game over.";
+			ComputerTurn.endGameMessage = "Checkmate! Game over.";
 			 while (!(ComputerTurn.gameOver)) {
 					System.out.println(cBoard);
-					 play();
+					 ComputerTurn.play();
 					}
 			 System.out.println(ComputerTurn.endGameMessage);
 			 gameSelection = 0;
