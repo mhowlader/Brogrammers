@@ -81,16 +81,33 @@ public class playGame {
 		playGame ingame = new playGame();
 
 		while (gameSelection == 1) { //run chess 2 players here
-			System.out.println("running test chess");
-			System.out.println(ChessBoard.getBoard());
- 			break;
-		}
+			System.out.println("now playing 2 player chess");
+			ChessBoard = new ChessBoard();
+			ChessBoard.setUp();
+
+			while (!(PlayerTurn.gameOver)) {
+			    System.out.println(ChessBoad.getBoard());
+			    PlayerTurn.play();
+			}
+			System.out.println("Game Over!");
+			gameSelection = 0;
+		  }
 
 		while (gameSelection == 2) { //run chess single player here
-			System.out.println("running test chess2");
-			break;
+			System.out.println("now playing against an AI");
+			ChessBoard = new ChessBoard();
+			ChessBoard.setUp();
+			resetMoveCount();
+
+			endGameMessage = "Checkmate! Game over.";
+			 while (!(ComputerTurn.gameOver)) {
+					System.out.println(cBoard);
+					 play();
+					}
+			 System.out.println(ComputerTurn.endGameMessage);
+			 gameSelection = 0;
+			}
+System.out.println("Thank you for playing!");
 		}
 
-		System.out.println("Thank you for playing!");
-	}//end main
 }

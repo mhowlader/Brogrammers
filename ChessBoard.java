@@ -8,11 +8,17 @@ public class ChessBoard {
     public ChessBoard() {
         board = new ChessPiece[BOARD_SIZE][BOARD_SIZE]; //initializes variable board
     }
+
+    // public ChessBoard (ChessBoard aBoard) {
+    //     this.board=
+    // }
     public static ChessPiece[][] getBoard() {
         return board; //returns the board
     }
     public static void setPieceOnBoard(int row, int col, ChessPiece newPiece) { //allows you to place new pieces on the board
         board[row][col] = newPiece;
+        newPiece.row=row;
+        newPiece.col=col;
     }
 
     public static boolean checkIfLegal( int oldRow, int oldCol, int newRow, int newCol) {
@@ -85,16 +91,63 @@ public class ChessBoard {
         return board[r][c].getColor();
     }
 
+    public static boolean check(int row, int col) {
+        ChessPiece piece = board[row][col];
+        String color = piece.getColor();
+        int[] coord = new int[]{row,col};
+        if (color.equals("black")) {
+            for(int[] a: getWhiteValidMoves()) {
+                if (Arrays.equals(coord,a)) {
+                    return true;
+                }
+            }
+        }
+        else if (color.equals("white")) {
+            for(int[] a: getBlackValidMoves()) {
+                if (Arrays.equals(coord,a)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+
+    public static boolean checkMate(int row, int col) {
+        ChessPiece piece = board[row][col];
+        String color = piece.getColor();
+        int[] coord = new int[]{row,col};
+        if (color.equals("black") & check(row,col)) {
+            for(int[] a: getWhiteValidMoves()) {
+                for(int[] b: piece.getValidMoves()) {
+                    if (!Arrays.equals(b,a)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        else if (color.equals("white")) {
+            for(int[] a: getBlackValidMoves()) {
+                for(int[] b: piece.getValidMoves()) {
+                    if (!Arrays.equals(b,a)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
     public static void blackValidMoves() {
         ChessPiece piece;
         blackValidMoves = new ArrayList<int[]>();
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                piece = board[x][y];
-                if (piece.getColor().equals("Black")) {
-                    for(int[] coord: piece.getValidMoves()) {
-                        blackValidMoves.add(coord);
+                if (isPieceOnSquare(x,y)) {
+                    piece = board[x][y];
+                    if (piece.getColor().equals("Black")) {
+                        for(int[] coord: piece.getValidMoves()) {
+                            blackValidMoves.add(coord);
+                        }
                     }
                 }
             }
@@ -109,10 +162,12 @@ public class ChessBoard {
         whiteValidMoves = new ArrayList<int[]>();
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                piece = board[x][y];
-                if (piece.getColor().equals("White")) {
-                    for(int[] coord: piece.getValidMoves()) {
-                        whiteValidMoves.add(coord);
+                if (isPieceOnSquare(x,y)) {
+                    piece = board[x][y];
+                    if (piece.getColor().equals("White")) {
+                        for(int[] coord: piece.getValidMoves()) {
+                            whiteValidMoves.add(coord);
+                        }
                     }
                 }
             }
@@ -135,9 +190,84 @@ public class ChessBoard {
         return whiteValidMoves;
     }
 
+    // public static boolean moveCausesMyKingCheck(int oldR,int oldC,int newR,int newC, int player, ChessBoard tBoard) {
+    //     int[] kingCoord;
+    //     ChessBoard TestBoard = tBoard;
+    //     TestBoard.movePiece(oldR,oldC,newR,newC);
+    //     TestBoard.refreshValidMoves();
+    //
+    //
+    //     for (int i=0;i<8;i++) {
+    //         for (int j=0;j<8;j++) {
+    //             if (TestBoard.isPieceOnSquare(i,j) ) { //checks if there is a piece on the square
+    //                 ChessPiece p = TestBoard.getPiece(i,j);
+    //                 if ( (p instanceof King) && (p.getPlayerNum() == player) ) {
+    //                     kingCoord= new int[]{p.row,p.col}; //saves kings coordinates
+    //
+    //                     if (player==1) {
+    //                         TestBoard.blackValidMoves();
+    //                         for (int[] a:TestBoard.getBlackValidMoves()) {
+    //                             if (Arrays.equals(a,kingCoord)) {
+    //                                 return true;
+    //                             }
+    //                         }
+    //                         return false;
+    //                     }
+    //                     else { //for black king
+    //                         TestBoard.whiteValidMoves();
+    //                         for (int[] a:TestBoard.getWhiteValidMoves()) {
+    //                             if (Arrays.equals(a,kingCoord)) {
+    //                                 return true;
+    //                             }
+    //                         }
+    //                         return false;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false;
+    //
+    // }
+
+    public static boolean isMyKingInCheck(int player) {
+        int[] kingCoord;
+
+        for (int i=0;i<8;i++) {
+            for (int j=0;j<8;j++) {
+                if (isPieceOnSquare(i,j) ) { //checks if there is a piece on the square
+                    ChessPiece p = getPiece(i,j);
+                    if ( (p instanceof King) && (p.getPlayerNum() == player) ) {
+                        kingCoord= new int[]{p.row,p.col}; //saves kings coordinates
+
+                        if (player==1) {
+                            blackValidMoves();
+                            for (int[] a:getBlackValidMoves()) {
+                                if (Arrays.equals(a,kingCoord)) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+                        else { //for black king
+                            whiteValidMoves();
+                            for (int[] a:getWhiteValidMoves()) {
+                                if (Arrays.equals(a,kingCoord)) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public String toString() {
         String output = "";
-        String letters="ABCDEFGH";
+        String letters="abcdefgh";
         output+="\n   ";
 
         for (int i=0;i<8;i++) {
@@ -167,88 +297,67 @@ public class ChessBoard {
         }
         return output;
     }
-//=========================Pawn Promotion==================
-    public static void pawnUpgradeBoard(){
 
-      int player = 0;
-
-      for (int j = 0; j < 8; j++){
-          if (getPiece(0,j) instanceof Pawn){ //when pawns reach the top, they must be black and promoted
-              Pawn.promotePawn(0, j, 2);
-              break;
-              }
-          }
-
-
-         for (int j = 0; j < 8; j++){
-             if (getPiece(7,j) instanceof Pawn){ //when pawns reach the bottom, they must be white and promoted
-                 Pawn.promotePawn(7, j, 1);
-                 break;
-             }
-         }
-    }
-
-//=========================================================
     // testing ChessBoard sets up properly
-    public static void main (String[] args) {
-        ChessBoard c=new ChessBoard();
-        c.setUp();
-
-        // for (int i=0;i<8;i++) {
-        //     for (int j=0;j<8;j++) {
-        //         if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
-        //             System.out.println(getPiece(i,j) + " " + getPiece(i,j).getColor() );
-        //             for (int[] a : getPiece(i,j).getValidMoves()) {
-        //                 System.out.println(Arrays.toString(a));
-        //             }
-        //         }
-        //     }
-        // }
-
-        System.out.println("End");
-
-        movePiece(1,1,2,1);
-
-        refreshValidMoves();
-        for (int[] a : getPiece(0,2).getValidMoves()) {
-            System.out.println(Arrays.toString(a));
-        }
-
-        System.out.println("End");
-
-        // for (int i=0;i<8;i++) {
-        //     for (int j=0;j<8;j++) {
-        //         if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
-        //             System.out.println(getPiece(i,j) + " " + getPiece(i,j).getColor() );
-        //             for (int[] a : getPiece(i,j).getValidMoves()) {
-        //                 System.out.println(Arrays.toString(a));
-        //             }
-        //         }
-        //     }
-        // }
-
-        System.out.println("End");
-
-
-        movePiece(0,2,2,0);
-        refreshValidMoves();
-        for (int[] a : getPiece(2,0).getValidMoves()) {
-            System.out.println(Arrays.toString(a));
-        }
-
-        System.out.println(getPiece(2,0).row);
-
-        // for (int i=0;i<8;i++) {
-        //     for (int j=0;j<8;j++) {
-        //         if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
-        //             System.out.println(getPiece(i,j) + " " + getPiece(i,j).getColor() );
-        //             for (int[] a : getPiece(i,j).getValidMoves()) {
-        //                 System.out.println(Arrays.toString(a));
-        //             }
-        //         }
-        //     }
-        // }
-    }
+    // public static void main (String[] args) {
+    //     ChessBoard c=new ChessBoard();
+    //     c.setUp();
+    //
+    //     // for (int i=0;i<8;i++) {
+    //     //     for (int j=0;j<8;j++) {
+    //     //         if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
+    //     //             System.out.println(getPiece(i,j) + " " + getPiece(i,j).getColor() );
+    //     //             for (int[] a : getPiece(i,j).getValidMoves()) {
+    //     //                 System.out.println(Arrays.toString(a));
+    //     //             }
+    //     //         }
+    //     //     }
+    //     // }
+    //
+    //     System.out.println("End");
+    //
+    //     movePiece(1,1,2,1);
+    //
+    //     refreshValidMoves();
+    //     for (int[] a : getPiece(0,2).getValidMoves()) {
+    //         System.out.println(Arrays.toString(a));
+    //     }
+    //
+    //     System.out.println("End");
+    //
+    //     // for (int i=0;i<8;i++) {
+    //     //     for (int j=0;j<8;j++) {
+    //     //         if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
+    //     //             System.out.println(getPiece(i,j) + " " + getPiece(i,j).getColor() );
+    //     //             for (int[] a : getPiece(i,j).getValidMoves()) {
+    //     //                 System.out.println(Arrays.toString(a));
+    //     //             }
+    //     //         }
+    //     //     }
+    //     // }
+    //
+    //     System.out.println("End");
+    //
+    //
+    //     movePiece(0,2,2,0);
+    //     refreshValidMoves();
+    //     for (int[] a : getPiece(2,0).getValidMoves()) {
+    //         System.out.println(Arrays.toString(a));
+    //     }
+    //
+    //     System.out.println(getPiece(2,0).row);
+    //
+    //     // for (int i=0;i<8;i++) {
+    //     //     for (int j=0;j<8;j++) {
+    //     //         if (isPieceOnSquare(i,j)) { //checks if there is a piece on the square
+    //     //             System.out.println(getPiece(i,j) + " " + getPiece(i,j).getColor() );
+    //     //             for (int[] a : getPiece(i,j).getValidMoves()) {
+    //     //                 System.out.println(Arrays.toString(a));
+    //     //             }
+    //     //         }
+    //     //     }
+    //     // }
+    // }
 
 
 
