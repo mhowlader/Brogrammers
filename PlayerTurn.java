@@ -80,7 +80,7 @@ public class PlayerTurn {
 
         if (cBoard.isMyKingInCheck(currentPlayerNum)) {
             if (cBoard.isCheckMate(currentPlayerNum)) {
-                System.out.println(playerName +  " Wins!" );
+                System.out.println("Checkmate! " + playerName +  " Wins!" );
                 gameOver=true;
             }
         }
@@ -130,7 +130,7 @@ public class PlayerTurn {
 
                         if ( cBoard.getPiece(oldR,oldC).getPlayerNum() == currentPlayerNum) { //check if matching playernumber
 
-                        
+
                             System.out.println(playerName + ", Choose the location you want to move the piece to:"); //request user input
                             //====================user selects destination========================
 
@@ -199,7 +199,7 @@ public class PlayerTurn {
                             }
                         }
                         else {
-                            System.out.println("That's not your piece. Try again" + currentPlayerNum);
+                            System.out.println("That's not your piece. Try again");
                         }
                     }
                     else {

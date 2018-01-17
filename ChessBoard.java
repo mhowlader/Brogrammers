@@ -285,33 +285,44 @@ public class ChessBoard {
 
     public String toString() {
         String output = "";
-        String letters="abcdefgh";
+        String letters="ABCDEFGH";
         output+="\n   ";
 
         for (int i=0;i<8;i++) {
-            output+= "- ";
+            output+= "-  ";
         }
         output+="\n";
-        for( int i =0; i < 8; i++ ) {
+        for( int i =0; i < 7; i++ ) {
             output += (i+1) + "| ";
             for( int j=0; j < 8; j++ ) {
                 if (board[i][j] == null) {
-                    output +="  ";
+                    output +="   ";
                 }
                 else {
-                    output += board[i][j] + " "; //get(i+1,j+1)
+                    output += board[i][j].getColor().substring(0,1) + board[i][j] + " "; //get(i+1,j+1)
                 }
             }
-            output += "|\n";
+            output += "|\n\n";
         }
-        output+="   ";
+        output += (8) + "| ";
+        for( int j=0; j < 8; j++ ) {
+
+            if (board[7][j] == null) {
+                output +="   ";
+            }
+            else {
+                output += board[7][j].getColor().substring(0,1) + board[7][j] + " "; //get(i+1,j+1)
+            }
+        }
+
+        output+="|\n   ";
         for (int i=0;i<8;i++) {
-            output+= "- ";
+            output+= "-  ";
         }
         output+="\n   ";
 
         for (int i=0;i<8;i++) {
-            output+= letters.substring (i,i+1) + " ";
+            output+= letters.substring (i,i+1) + "  ";
         }
         return output;
     }

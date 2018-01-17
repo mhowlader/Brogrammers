@@ -58,7 +58,7 @@ public class Woo {
             }
         }
         //get names
-        s = "player 1 name: ";
+        s = "player 1 (White) name: ";
         System.out.print(s);
 
         try {
@@ -66,7 +66,7 @@ public class Woo {
         } catch (IOException e) {
         }
 
-        s = "player 2 name: ";
+        s = "player 2 (Black) name: ";
         System.out.print(s);
 
         try {
