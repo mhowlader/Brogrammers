@@ -81,7 +81,7 @@ public class PlayerTurn {
 		int oldR,oldC,newR,newC;
 
     if (is1000turns){
-      gameOver = true;
+      gameOver = true; //ends game and displays endgamemessage
     }
 
 
@@ -216,6 +216,7 @@ public class PlayerTurn {
     	cBoard = new ChessBoard();
 	    cBoard.setUp();
       resetMoveCount();
+
       endGameMessage = "Checkmate! Game over.";
 	     while (!gameOver) {
 	        System.out.println(cBoard);

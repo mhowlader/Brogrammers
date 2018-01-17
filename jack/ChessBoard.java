@@ -86,7 +86,7 @@ public class ChessBoard {
 	for (int x = 0; x < 8; x++) {
 	    for (int y = 0; y < 8; y++) {
 		piece = board[x][y];
-		if (piece.getColor() == "black") {
+		if (piece.getColor() == "Black") {
 		    for(int[] coord: piece.getValidMoves()) {
 			blackValidMoves.add(coord);
 		    }
@@ -94,7 +94,7 @@ public class ChessBoard {
 	    }
 	}
     }
-	
+
     public static ArrayList<int[]> getBlackValidMoves() {
 	return blackValidMoves;
     }
@@ -104,7 +104,7 @@ public class ChessBoard {
 	for (int x = 0; x < 8; x++) {
 	    for (int y = 0; y < 8; y++) {
 		piece = board[x][y];
-		if (piece.getColor() == "white") {
+		if (piece.getColor() == "White") {
 		    for(int[] coord: piece.getValidMoves()) {
 			whiteValidMoves.add(coord);
 		    }
@@ -116,7 +116,7 @@ public class ChessBoard {
     public static ArrayList<int[]> getWhiteValidMoves() {
 	return whiteValidMoves;
     }
-    
+
     public String toString() {
 	String output = "";
 	String letters="abcdefgh";
