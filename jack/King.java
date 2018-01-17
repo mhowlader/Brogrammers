@@ -81,6 +81,7 @@ public class King extends ChessPiece {
 	String color = getColor();
 	int[] coord = new int[]{row,col};
 	int ctr = 0;
+        validMoves.clear();
 	if (color.equals("black") & isCheck()) {
 	    for(int[] a: ChessBoard.getWhiteValidMoves()) {
 		for(int[] b: getValidMoves()) {
@@ -100,7 +101,6 @@ public class King extends ChessPiece {
 	    }
 	}
     }
-    
     public String toString() {
 	return "K";
     }
