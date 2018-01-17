@@ -158,25 +158,40 @@ public class ComputerTurn {
                 }
                 gameOver = true;
               } else if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
-  						System.out.println("Numbers must be between 1 and 8");
+                System.out.println(cBoard.getBoard());
+
+              System.out.println("Numbers must be between 1 and 8");
 
   					} else if (! isInLetters(userInput.substring(0,1))) { //makes sure user inputs a VALID letter
+              System.out.println(cBoard.getBoard());
+
   						System.out.println("Letters must be between A and H");
 
               userInput = in.readLine();
 
   					} else if (!(userInput.length() == 2)){
+              System.out.println(cBoard.getBoard());
+
               System.out.println("Not a valid Combination, Try Again");
               userInput = in.readLine();
 
+
             } else if (!(cBoard.isPieceOnSquare(oldR,oldC))) { //check f there is a piece on the square
+              System.out.println(cBoard.getBoard());
+
               System.out.println("There is no piece here, Try Again");
+              System.out.println(cBoard.getBoard());
+
               userInput = in.readLine();
 
             } else if (!(cBoard.getPiece(oldR,oldC).getPlayerNum() == currentPlayerNum)){
+              System.out.println(cBoard.getBoard());
+
               System.out.println("This is not your piece, Try Again");
               userInput = in.readLine();
             } else if (!(cBoard.checkIfLegal(oldR,oldC,newR,newC))) {
+              System.out.println(cBoard.getBoard());
+
               System.out.println("You can't move there, Try Again");
               userInput = in.readLine();
             }else {
@@ -200,7 +215,12 @@ public class ComputerTurn {
             System.out.println(errorMessage);
           }
 
+          System.out.println(cBoard.getBoard());
+
+
           Computer.moveRandomPiece();
+
+          System.out.println(cBoard.getBoard());
 
 
 }
