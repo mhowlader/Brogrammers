@@ -55,8 +55,12 @@ public class PlayerTurn {
 		boolean didPlayerEnterValidPair;
 		int oldR,oldC,newR,newC;
 		//====================user selects piece========================
-		System.out.println("Choose the piece you want to move (E2)"); //E2
-
+		if (currentPlayerNum == 1){
+      System.out.println(playGame.getPlayer1Name() + ", Choose the piece you want to move (FORMAT: E2)"); //E2
+    }
+    if (currentPlayerNum == 2){
+        System.out.println(playGame.getPlayer2Name() + ", Choose the piece you want to move (FORMAT: E2)"); //E2
+    }
 		String errorMessage = "Invalid Input, please try again";
 		try {
 			userInput = in.readLine();

@@ -6,15 +6,15 @@ public class playGame {
 	private static int gameSelection;
 	private InputStreamReader isr;
 	private BufferedReader in;
-	private String player1Name;
-	private String player2Name;
+	private static String player1Name;
+	private static String player2Name;
 
 	public playGame() {
 		gameChosen = false;
 		isr = new InputStreamReader(System.in);
 		in = new BufferedReader(isr);
-		player1Name = "default";
-		player2Name = "default";
+		player1Name = "default1";
+		player2Name = "default2";
 		newGame();
 	}
 
@@ -68,11 +68,11 @@ public class playGame {
 	}
 
 	//
-	public String getPlayer1Name(){
+	public static String getPlayer1Name(){
 		return player1Name;
 	}
 
-	public String getPlayer2Name(){
+	public static String getPlayer2Name(){
 		return player2Name;
 	}
 
@@ -82,7 +82,7 @@ public class playGame {
 
 		while (gameSelection == 1) { //run chess 2 players here
 			System.out.println("running test chess");
-			System.out.println(Board.getBoard());
+			System.out.println(ChessBoard.getBoard());
  			break;
 		}
 
