@@ -55,7 +55,7 @@ public class King extends ChessPiece {
     public static boolean isCheckMate() {
 	     String color = getColor();
 	      int[] coord = new int[]{row,col};
-	       if (color.equals("Black") & check()) {
+	       if (color.equals("Black") & isCheck()) {
 	          for(int[] a: ChessBoard.getWhiteValidMoves()) {
 		            for(int[] b: getValidMoves()) {
 		                if (!Arrays.equals(b,a)) {
@@ -64,7 +64,7 @@ public class King extends ChessPiece {
 		            }
            }
 	      }
-	else if (color.equals("White") & check()) {
+	else if (color.equals("White") & isCheck()) {
 	    for(int[] a: ChessBoard.getBlackValidMoves()) {
 		for(int[] b: getValidMoves()) {
 		    if (!Arrays.equals(b,a)) {
@@ -81,20 +81,20 @@ public class King extends ChessPiece {
 	String color = getColor();
 	int[] coord = new int[]{row,col};
 	int ctr = 0;
-	if (color.equals("black") & check()) {
+	if (color.equals("black") & isCheck()) {
 	    for(int[] a: ChessBoard.getWhiteValidMoves()) {
 		for(int[] b: getValidMoves()) {
 		    if (!Arrays.equals(b,a)) {
-		        validMoves[ctr] = b;
+		        validMoves.add(ctr,b);
 		    }
 		}
 	    }
 	}
-	else if (color.equals("white") & check()) {
+	else if (color.equals("white") & isCheck()) {
 	    for(int[] a: ChessBoard.getBlackValidMoves()) {
 		for(int[] b: getValidMoves()) {
 		    if (!Arrays.equals(b,a)) {
-		        validMoves[ctr] = b;
+			validMoves.add(ctr,b);
 		    }
 		}
 	    }
