@@ -75,19 +75,19 @@ Kevin :: Revised Flowchart (v2)
 --------------------------------------------------------------
 Kevin :: Started progress on Pawn.java -- started validMoves.java and skeletoned the work that needs to be done
 Mohtasim :: 
-Alan ::
+Alan :: worked on a skeleton version of playerTurn that Kevin would later use, and worked on how ChessPiece and it's piece would work
 ==============================================================
 
 2018-01-14
 --------------------------------------------------------------
 Kevin :: started playerTurn and error handling, worked on validMoves functionality in the pieces
 Mohtasim :: 
-Alan ::
+Alan :: Worked on adding methods to ChessBoard.java  
 ==============================================================
 
 2018-01-15
 --------------------------------------------------------------
 Kevin :: Added Pawn promotion code, finished playerTurn including error handling
 Mohtasim :: 
-Alan ::
+Alan :: Added check & checkMate functionality, created UML.pdf
 ==============================================================
