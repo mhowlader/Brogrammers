@@ -215,7 +215,7 @@ public class ChessBoard {
     //                     }
     //                     else { //for black king
     //                         TestBoard.whiteValidMoves();
-    //                         for (int[] a:TestBoard.getWhiteValidMoves()) {
+    //                         for (int[] a:TestBoard.getWhiteValidMoAves()) {
     //                             if (Arrays.equals(a,kingCoord)) {
     //                                 return true;
     //                             }
@@ -278,12 +278,18 @@ public class ChessBoard {
                 if (isPieceOnSquare(r,c) ) {
                     if (getPiece(r,c).getPlayerNum()==player) {
                         for (int[] a:getPiece(r,c).getValidMoves()) {
-                            if (isPieceOnSquare(a[0],a[1])) {
+                            if (isPieceOnSquare(a[0],a[1])) { //if piece on the square
                                 pieceAtNew=getPiece(a[0],a[1]);
                                 isPieceAtNew=true;
                             }
                             movePiece(r,c,a[0],a[1]);
+                            refreshValidMoves();
                             if (!isMyKingInCheck(player) ) { //if a move makes the king not in check
+                                movePiece(a[0],a[1],r,c);
+                                if (isPieceAtNew) {
+                                    setPieceOnBoard(a[0],a[1],pieceAtNew);
+                                }
+                                refreshValidMoves();
                                 return false;
                             }
                             else {
@@ -291,6 +297,7 @@ public class ChessBoard {
                                 if (isPieceAtNew) {
                                     setPieceOnBoard(a[0],a[1],pieceAtNew);
                                 }
+                                refreshValidMoves();
                             }
                         }
                     }
