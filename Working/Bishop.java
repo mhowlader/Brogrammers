@@ -4,16 +4,13 @@ public class Bishop extends ChessPiece {
     //private static int row,col;
     public Bishop(int x,int y, int player ) { //use coor index at 0
         super(x,y,player);
-        //fillValidMoves();
+        fillValidMoves();
     }
 
     public void fillValidMoves() {
         validMoves = new ArrayList<int[]>();
 
-        //
-
-        //generates coordinates of top right diagonal of Bishop
-
+        //negative row direction, positive column direction
         for (int r=row-1, c=col+1; r>=0 && c<8;r--, c++) {
             if (!ChessBoard.isPieceOnSquare(r,c)) { //if empty square
                 validMoves.add(new int[]{r,c});
@@ -29,7 +26,7 @@ public class Bishop extends ChessPiece {
         }
 
 
-
+        //negative row direction, neative column direction
         for (int r=row-1, c=col-1;r>=0 && c>=0;r--, c--) {
 
             if (!ChessBoard.isPieceOnSquare(r,c)) {
@@ -44,7 +41,7 @@ public class Bishop extends ChessPiece {
             }
         }
 
-
+        //positive row direction, positive column direction
         for (int r=row+1, c=col+1;r<8 && c<8;r++, c++) {
             if (!ChessBoard.isPieceOnSquare(r,c)) { // if empty square
                 validMoves.add(new int[]{r,c});
@@ -59,7 +56,7 @@ public class Bishop extends ChessPiece {
         }
 
 
-
+        //positive row direction, negativve column direction
         for (int r=row+1, c=col-1;r<8 && c>=0;r++, c--) {
 
             if (!ChessBoard.isPieceOnSquare(r,c)) {
@@ -75,9 +72,7 @@ public class Bishop extends ChessPiece {
         }
 
     }
-    public  ArrayList<int[]> getValidMoves() {
-	return validMoves;
-    }
+
 
     public String toString() {
         return "B";

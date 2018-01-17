@@ -91,6 +91,8 @@ public class ChessBoard {
         return board[r][c].getColor();
     }
 
+    /*
+
     public static boolean check(int row, int col) {
         ChessPiece piece = board[row][col];
         String color = piece.getColor();
@@ -137,6 +139,9 @@ public class ChessBoard {
         }
         return true;
     }
+    */
+
+    //makes int[] array of all possible black legal moves
     public static void blackValidMoves() {
         ChessPiece piece;
         blackValidMoves = new ArrayList<int[]>();
@@ -157,6 +162,7 @@ public class ChessBoard {
     public static ArrayList<int[]> getBlackValidMoves() {
         return blackValidMoves;
     }
+
     public static void whiteValidMoves() {
         ChessPiece piece;
         whiteValidMoves = new ArrayList<int[]>();
@@ -174,7 +180,12 @@ public class ChessBoard {
         }
     }
 
-    //refreshes valid moves
+
+    public static ArrayList<int[]> getWhiteValidMoves() {
+        return whiteValidMoves;
+    }
+
+    //refreshes valid moves for all pieces
     public static void refreshValidMoves() {
         for (int i=0;i<8;i++) {
             for (int j=0;j<8;j++) {
@@ -186,61 +197,19 @@ public class ChessBoard {
 
     }
 
-    public static ArrayList<int[]> getWhiteValidMoves() {
-        return whiteValidMoves;
-    }
-
-    // public static boolean moveCausesMyKingCheck(int oldR,int oldC,int newR,int newC, int player, ChessBoard tBoard) {
-    //     int[] kingCoord;
-    //     ChessBoard TestBoard = tBoard;
-    //     TestBoard.movePiece(oldR,oldC,newR,newC);
-    //     TestBoard.refreshValidMoves();
-    //
-    //
-    //     for (int i=0;i<8;i++) {
-    //         for (int j=0;j<8;j++) {
-    //             if (TestBoard.isPieceOnSquare(i,j) ) { //checks if there is a piece on the square
-    //                 ChessPiece p = TestBoard.getPiece(i,j);
-    //                 if ( (p instanceof King) && (p.getPlayerNum() == player) ) {
-    //                     kingCoord= new int[]{p.row,p.col}; //saves kings coordinates
-    //
-    //                     if (player==1) {
-    //                         TestBoard.blackValidMoves();
-    //                         for (int[] a:TestBoard.getBlackValidMoves()) {
-    //                             if (Arrays.equals(a,kingCoord)) {
-    //                                 return true;
-    //                             }
-    //                         }
-    //                         return false;
-    //                     }
-    //                     else { //for black king
-    //                         TestBoard.whiteValidMoves();
-    //                         for (int[] a:TestBoard.getWhiteValidMoAves()) {
-    //                             if (Arrays.equals(a,kingCoord)) {
-    //                                 return true;
-    //                             }
-    //                         }
-    //                         return false;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return false;
-    //
-    // }
 
     //checks if the specified player's king is in check
     public static boolean isMyKingInCheck(int player) {
         int[] kingCoord;
 
+
+        //looks through entire board for a king of matching player, checks if king falls on an opponesnts legal moves
         for (int i=0;i<8;i++) {
             for (int j=0;j<8;j++) {
                 if (isPieceOnSquare(i,j) ) { //checks if there is a piece on the square
                     ChessPiece p = getPiece(i,j);
                     if ( (p instanceof King) && (p.getPlayerNum() == player) ) {
                         kingCoord= new int[]{p.row,p.col}; //saves kings coordinates
-
                         if (player==1) {
                             blackValidMoves();
                             for (int[] a:getBlackValidMoves()) {

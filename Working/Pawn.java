@@ -16,7 +16,7 @@ public class Pawn extends ChessPiece {
 		validMoves = new ArrayList<int[]>();
 
 
-        //generates all valid moves for any given pawn
+        //generates all valid moves for any given pawn, based on color
         if (color.equals("White") ) {
             if (!ChessBoard.isPieceOnSquare(row+1,col)) {
                 validMoves.add(new int[]{row+1,col});
@@ -52,9 +52,9 @@ public class Pawn extends ChessPiece {
         }
     }
 
-    public  ArrayList<int[]> getValidMoves() {
-		return validMoves;
-    }
+
+	//Perhaps another day
+	/*
 
     public void upgradePawn(int row, int col, int player){
 		isr = new InputStreamReader(System.in);
@@ -81,6 +81,7 @@ public class Pawn extends ChessPiece {
 			System.out.println(errorMessage);
 		}
     }
+	*/
 
     public String toString() {
 	return "P";
