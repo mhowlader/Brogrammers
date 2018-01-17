@@ -90,5 +90,5 @@ Alan :: Worked on adding methods to ChessBoard.java
 --------------------------------------------------------------
 Kevin :: Added Pawn promotion code, finished playerTurn including error handling
 Mohtasim :: 
-Alan :: Worked on a part of check & checkMate functionality, created UML.pdf
+Alan :: Added check & checkMate methods, created UML.pdf
 ==============================================================
