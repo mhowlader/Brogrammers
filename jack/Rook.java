@@ -64,8 +64,7 @@ public class Rook extends ChessPiece {
                 break;
             }
         }
-    }
     public String toString() {
-        return "R";
+	return "R";
     }
 }

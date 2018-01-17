@@ -26,17 +26,7 @@ public abstract class ChessPiece {
 
     public static ArrayList<int[]> getValidMoves() {
         return validMoves;
-    }
-
-
-    public int getRow(){
-        return row;
-    }
-
-    public int getCol(){
-        return col;
-    }
-
+      }
 
     public boolean sameColor(ChessPiece a) {
         return this.getColor().equals(a.getColor()); //check if same color
