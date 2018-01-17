@@ -92,6 +92,15 @@ public class PlayerTurn {
 		try {
 			userInput = in.readLine();
 			didPlayerEnterValidPair = false;
+      if (userInput.equals("Concede")){
+          if (currentPlayerNum == 1){
+              endGameMessage = playGame.getPlayer1Name() + " has conceded!";
+          }
+          if (currentPlayerNum == 2){
+              endGameMessage = playGame.getPlayer2Name() + " has conceded!";
+          }
+          gameOver = true;
+          }
 			if (userInput.length() == 2){
 				while (!didPlayerEnterValidPair){
 					if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
@@ -206,7 +215,7 @@ public class PlayerTurn {
 		moveCount += 1; //+1 move
 
 		if (King.isCheckMate()) { //if in checkmate, end game
-			gameOver = true;
+			//gameOver = true;
 		}
 
 	}
