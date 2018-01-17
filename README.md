@@ -8,7 +8,11 @@ In order to play:
 
 Compile Woo.java
 
+"javac Woo.java"
+
 Run Woo
+
+"java Woo"
 
 And that's it, the game will begin.
 
