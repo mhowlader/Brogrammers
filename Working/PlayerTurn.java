@@ -17,6 +17,8 @@ public class PlayerTurn {
 	moveCount = 0;
 
     }
+
+    
     public static int convertLetter(String letter) {
 		int output = 999;
 		for(int i = 0; i < 8; i++) {

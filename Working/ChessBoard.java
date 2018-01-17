@@ -9,18 +9,18 @@ public class ChessBoard {
         board = new ChessPiece[BOARD_SIZE][BOARD_SIZE]; //initializes variable board
     }
 
-    // public ChessBoard (ChessBoard aBoard) {
-    //     this.board=
-    // }
     public static ChessPiece[][] getBoard() {
         return board; //returns the board
     }
+
+    //sets a piece on the specified posotion
     public static void setPieceOnBoard(int row, int col, ChessPiece newPiece) { //allows you to place new pieces on the board
         board[row][col] = newPiece;
         newPiece.row=row;
         newPiece.col=col;
     }
 
+    //checks if legal move by comparing move to pieces' validmoves
     public static boolean checkIfLegal( int oldRow, int oldCol, int newRow, int newCol) {
         ChessPiece piece=board[oldRow][oldCol];
         int[] coord = new int[]{newRow,newCol};
@@ -31,6 +31,8 @@ public class ChessBoard {
         }
         return false;
     }
+
+    //moves pieces at one location to another
     public static void movePiece( int oldRow, int oldCol, int newRow, int newCol) { //allows you to move a piece
 
         board[newRow][newCol] = board[oldRow][oldCol]; // sets whatevers on the new position as what was at the old position
@@ -68,6 +70,8 @@ public class ChessBoard {
 
         refreshValidMoves();
     }
+
+    //checks if there is a piece on the square
     public static boolean isPieceOnSquare(int x, int y) {
         if (board[x][y] instanceof ChessPiece) {
             return true;
@@ -83,10 +87,12 @@ public class ChessBoard {
         return false;
     }
 
+    //returns piece at the position
     public static ChessPiece getPiece(int r, int c) {
         return board[r][c];
     }
 
+    //returns color of piece on the board
     public static String colorOfSquare(int r, int c) {
         return board[r][c].getColor();
     }
