@@ -107,7 +107,9 @@ public class ComputerTurn {
                     endGameMessage = playGame.getPlayer2Name() + " has conceded!";
                     errorMessage = playGame.getPlayer1Name() + " has conceded!";
                 }
+                didPlayerEnterValidPair = true;
                 gameOver = true;
+                break;
               } else if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
   						System.out.println("Numbers must be between 1 and 8");
 
@@ -156,7 +158,9 @@ public class ComputerTurn {
                     endGameMessage = playGame.getPlayer2Name() + " has conceded!";
                     errorMessage = playGame.getPlayer1Name() + " has conceded!";
                 }
+                didPlayerEnterValidPair = true;
                 gameOver = true;
+                break;
               } else if (!isInNumbers(userInput.substring(1,2))) { //makes sure user inputs a VALID number
                 System.out.println(cBoard.getBoard());
 
